@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PM_Ban_Do_An_Nhanh\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\bll\\monanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\bll\\monanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PM_Ban_Do_An_Nhanh\\csharp||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:csharp||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\defaultdbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\defaultdbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\idbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\idbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|D:\\PM_Ban_Do_An_Nhanh\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MonAnBLL.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwBIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:24:17.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DBConnection.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:29:47.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmSales.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:25:50.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MonAnDAL.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAUwBUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T06:49:01.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "csharp",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\csharp",
+              "RelativeDocumentMoniker": "csharp",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\csharp",
+              "RelativeToolTip": "csharp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-15T07:19:23.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": ".editorconfig",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\.editorconfig",
+              "RelativeDocumentMoniker": ".editorconfig",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\.editorconfig",
+              "RelativeToolTip": ".editorconfig",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-15T07:16:39.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DefaultDbConnection.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:09:27.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IDBConnection.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:09:18.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DBConnection.cs",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T06:51:11.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\App.config",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-12-15T06:45:38.764Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

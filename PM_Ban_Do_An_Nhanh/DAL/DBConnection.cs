@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
+
+namespace PM_Ban_Do_An_Nhanh
+{
+    public static class DBConnection
+    {
+        // khai báo
+        private static string connectionString;
+
+        static DBConnection()
+        {
+            try
+            {
+                var cs = ConfigurationManager.ConnectionStrings["PM_Ban_Do_An_Nhanh_DB"];
+                if (cs != null && !string.IsNullOrWhiteSpace(cs.ConnectionString))
+                {
+                    connectionString = cs.ConnectionString;
+                }
+                else
+                {
+                    // Fallback nếu thiếu trong App.config
+                    connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
+                }
+            }
+            catch
+            {
+                connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
+            }
+        }
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
+
+        public static bool TestConnection(out string errorMessage)
+        {
+            errorMessage = null;
+            try
+            {
+                using (SqlConnection connection = GetConnection())
+                {
+                    connection.Open();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+    }
+}

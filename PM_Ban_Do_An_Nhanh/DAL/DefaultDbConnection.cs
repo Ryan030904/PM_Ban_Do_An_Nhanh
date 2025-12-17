@@ -1,0 +1,52 @@
+﻿using System;
+using System.Data.SqlClient;
+
+namespace PM_Ban_Do_An_Nhanh.DAL
+{
+    public class DefaultDbConnection : IDBConnection
+    {
+        private readonly string _connectionString =
+            @"Data Source=.\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(_connectionString);
+        }
+
+        public bool TestConnection(out string errorMessage)
+        {
+            errorMessage = null;
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+    }
+}
+
+// trong frmSales
+private bool isProcessingPayment;
+
+private void btnThanhToan_Click(object sender, EventArgs e)
+{
+    if (isProcessingPayment) return;
+    isProcessingPayment = true;
+
+    try
+    {
+        // xử lý thanh toán
+    }
+    finally
+    {
+        isProcessingPayment = false;
+    }
+}
