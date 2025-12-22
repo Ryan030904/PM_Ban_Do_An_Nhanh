@@ -1,0 +1,67 @@
+﻿// PM_Ban_Do_An_Nhanh\DAL\DBConnection.cs
+using System;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PM_Ban_Do_An_Nhanh.DAL
+{
+    public interface IDBConnection
+    {
+        SqlConnection GetConnection();
+        bool TestConnection(out string errorMessage);
+    }
+
+    public class DefaultDbConnection : IDBConnection
+    {
+        private readonly string _connectionString =
+            @"Data Source=.\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(_connectionString);
+        }
+
+        public bool TestConnection(out string errorMessage)
+        {
+            errorMessage = null;
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+    }
+}
+
+using System.Data.SqlClient;
+using PM_Ban_Do_An_Nhanh.DAL;
+
+namespace PM_Ban_Do_An_Nhanh
+{
+    // Facade in root namespace to avoid duplicate type definitions in PM_Ban_Do_An_Nhanh.DAL
+    public static class DBConnection
+    {
+        private static readonly IDBConnection _impl = new DefaultDbConnection();
+
+        public static SqlConnection GetConnection()
+        {
+            return _impl.GetConnection();
+        }
+
+        public static bool TestConnection(out string errorMessage)
+        {
+            return _impl.TestConnection(out errorMessage);
+        }
+    }
+}

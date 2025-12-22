@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PM_Ban_Do_An_Nhanh
+{
+    internal static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Show login as a modal dialog first. Only run main form when login succeeds.
+            using (var loginForm = new frmLogin())
+            {
+                var result = loginForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    Application.Run(new frmMain());
+                }
+                // else: exit application
+            }
+        }
+    }
+}

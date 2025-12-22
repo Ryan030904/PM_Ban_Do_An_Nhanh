@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PM_Ban_Do_An_Nhanh.Entities
+{
+    public class TaiKhoan
+    {
+        public int MaTK { get; set; }
+        public string TenTK { get; set; }
+        public string TenDangNhap { get; set; }
+        public string MatKhau { get; set; }
+    }
+}

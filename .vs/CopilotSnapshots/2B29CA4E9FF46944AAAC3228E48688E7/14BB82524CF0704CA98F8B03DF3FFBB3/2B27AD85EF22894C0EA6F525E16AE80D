@@ -1,0 +1,91 @@
+﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+
+namespace PM_Ban_Do_An_Nhanh.Utils
+{
+    public static class ImageSeeder
+n    {
+        public static void SeedIfNeeded()
+        {
+            try
+            {
+                string imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "MenuItems");
+                if (!Directory.Exists(imagesDir)) Directory.CreateDirectory(imagesDir);
+
+                // If there are already images, do nothing
+                var files = Directory.GetFiles(imagesDir, "*.jpg");
+                if (files.Length > 0) return;
+
+                // Create sample images
+                CreateSampleImage(Path.Combine(imagesDir, "Ga_ran_25000.jpg"), "Gà Rán", 25000);
+                CreateSampleImage(Path.Combine(imagesDir, "Banh_mi_15000.jpg"), "Bánh mì", 15000);
+                CreateSampleImage(Path.Combine(imagesDir, "Tra_da_5000.jpg"), "Trà đá", 5000);
+
+                // default image
+                CreateDefaultImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "default.jpg"));
+            }
+            catch
+            {
+                // ignore errors seeding images
+            }
+        }
+
+        private static void CreateSampleImage(string path, string title, int price)
+        {
+            int w = 400, h = 300;
+            using (Bitmap bmp = new Bitmap(w, h))
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.FromArgb(240, 240, 240));
+                // draw rectangle
+                using (Brush b = new SolidBrush(Color.FromArgb(200, 80, 50)))
+                {
+                    g.FillRectangle(b, 0, 0, w, h);
+                }
+
+                // draw title
+                using (Font f = new Font("Segoe UI", 20, FontStyle.Bold))
+                using (Brush br = Brushes.White)
+                {
+                    var sz = g.MeasureString(title, f);
+                    g.DrawString(title, f, br, (w - sz.Width) / 2, (h - sz.Height) / 2 - 20);
+                }
+
+                // draw price
+                using (Font f2 = new Font("Segoe UI", 14, FontStyle.Regular))
+                using (Brush br2 = Brushes.White)
+                {
+                    string p = price.ToString("N0") + " VNĐ";
+                    var sz2 = g.MeasureString(p, f2);
+                    g.DrawString(p, f2, br2, (w - sz2.Width) / 2, (h - sz2.Height) / 2 + 20);
+                }
+
+                bmp.Save(path, ImageFormat.Jpeg);
+            }
+        }
+
+        private static void CreateDefaultImage(string path)
+        {
+            int w = 300, h = 200;
+            var dir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+            using (Bitmap bmp = new Bitmap(w, h))
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.LightGray);
+                using (Font f = new Font("Segoe UI", 18, FontStyle.Bold))
+                using (Brush br = Brushes.DarkSlateGray)
+                {
+                    string text = "No Image";
+                    var sz = g.MeasureString(text, f);
+                    g.DrawString(text, f, br, (w - sz.Width) / 2, (h - sz.Height) / 2);
+                }
+
+                bmp.Save(path, ImageFormat.Jpeg);
+            }
+        }
+    }
+}
