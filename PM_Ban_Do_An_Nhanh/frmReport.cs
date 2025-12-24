@@ -11,7 +11,7 @@ namespace PM_Ban_Do_An_Nhanh
     {
         // 👉 Chuỗi kết nối SQL Server (sửa lại tên server + database nếu cần)
         private readonly string connectionString =
-            @"Data Source=.;Initial Catalog=PM_Ban_Do_An_Nhanh;Integrated Security=True";
+            DBConnection.GetConnection().ConnectionString;
 
         public frmReport()
         {

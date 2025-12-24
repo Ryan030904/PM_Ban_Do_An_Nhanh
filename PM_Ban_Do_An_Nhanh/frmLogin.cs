@@ -7,11 +7,6 @@ namespace PM_Ban_Do_An_Nhanh
     public partial class frmLogin : Form
     {
        
-        private string connectionString =
-            @"Data Source=MSI\SQLEXPRESS;
-              Initial Catalog=FastFoodDB;
-              Integrated Security=True;";
-
         public frmLogin()
         {
             InitializeComponent();
@@ -38,7 +33,7 @@ namespace PM_Ban_Do_An_Nhanh
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DBConnection.GetConnection())
                 {
                     string sql = @"SELECT MaTK, TenTK, TenDangNhap
                            FROM TaiKhoan

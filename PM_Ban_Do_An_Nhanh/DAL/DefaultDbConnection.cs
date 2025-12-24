@@ -32,21 +32,3 @@ namespace PM_Ban_Do_An_Nhanh.DAL
         }
     }
 }
-
-// trong frmSales
-private bool isProcessingPayment;
-
-private void btnThanhToan_Click(object sender, EventArgs e)
-{
-    if (isProcessingPayment) return;
-    isProcessingPayment = true;
-
-    try
-    {
-        // xử lý thanh toán
-    }
-    finally
-    {
-        isProcessingPayment = false;
-    }
-}

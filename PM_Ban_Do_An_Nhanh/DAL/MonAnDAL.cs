@@ -116,11 +116,3 @@ namespace PM_Ban_Do_An_Nhanh.DAL
         }
     }
 }
-
-namespace PM_Ban_Do_An_Nhanh
-{
-    public static class DBConnection
-    {
-        public static SqlConnection GetConnection() { ... }
-    }
-}

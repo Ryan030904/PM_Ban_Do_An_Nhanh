@@ -40,6 +40,7 @@
       <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,23 +56,29 @@
     <Compile Include="BLL\DanhMucBLL.cs" />
     <Compile Include="BLL\DonHangBLL.cs" />
     <Compile Include="BLL\KhachHang.cs" />
+    <Compile Include="BLL\NhapKhoBLL.cs" />
     <Compile Include="BLL\MonAnBLL.cs" />
     <Compile Include="BLL\TaiKhoanBLL.cs" />
-    <Compile Include="DAL\DanhMucDAL.cs" />
+    <Compile Include="BLL\TonKhoBLL.cs" />
+    <Compile Include="BLL\XuatKhoBLL.cs" />
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="DAL\DefaultDbConnection.cs" />
+    <Compile Include="DAL\DanhMucDAL.cs" />
     <Compile Include="DAL\DonHangDAL.cs" />
-    <Compile Include="DAL\IDBConnection.cs" />
     <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\NhapKhoDAL.cs" />
     <Compile Include="DAL\MonAnDAL.cs" />
     <Compile Include="DAL\TaiKhoanDAL.cs" />
-    <Compile Include="DBConnection.cs" />
+    <Compile Include="DAL\TonKhoDAL.cs" />
+    <Compile Include="DAL\XuatKhoDAL.cs" />
     <Compile Include="Entities\Chitietdonhang.cs" />
     <Compile Include="Entities\DanhMuc.cs" />
     <Compile Include="Entities\DonHang.cs" />
     <Compile Include="Entities\KhachHang.cs" />
     <Compile Include="Entities\MonAn.cs" />
+    <Compile Include="Entities\NhapKho.cs" />
     <Compile Include="Entities\TaiKhoan.cs" />
+    <Compile Include="Entities\TonKhoMonAn.cs" />
+    <Compile Include="Entities\XuatKho.cs" />
     <Compile Include="frmAddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,12 @@
     <Compile Include="frmMenuManagement.Designer.cs">
       <DependentUpon>frmMenuManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNhapKhoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhapKhoUI.Designer.cs">
+      <DependentUpon>frmNhapKhoUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +126,12 @@
     </Compile>
     <Compile Include="frmSales.Designer.cs">
       <DependentUpon>frmSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXuatKhoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXuatKhoUI.Designer.cs">
+      <DependentUpon>frmXuatKhoUI.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
@@ -142,11 +161,17 @@
     <EmbeddedResource Include="frmMenuManagement.resx">
       <DependentUpon>frmMenuManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNhapKhoUI.resx">
+      <DependentUpon>frmNhapKhoUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSales.resx">
       <DependentUpon>frmSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXuatKhoUI.resx">
+      <DependentUpon>frmXuatKhoUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -13,16 +13,51 @@ namespace PM_Ban_Do_An_Nhanh
     public partial class frmMain : Form
     {
         private TabPage tabPageDanhMuc;
+        private TabPage tabPageNhapKho;
+        private TabPage tabPageXuatKho;
+
+        private Button btnNhapKho;
+        private Button btnXuatKho;
 
         public frmMain()
         {
             InitializeComponent();
             this.Text = "Hệ thống quản lý bán thức ăn nhanh";
-            HienThiThongTinNguoiDung();
 
-            
             tabPageDanhMuc = new TabPage("Danh Mục");
             tabControlMain.TabPages.Add(tabPageDanhMuc);
+
+            tabPageNhapKho = new TabPage("Nhập kho");
+            tabControlMain.TabPages.Add(tabPageNhapKho);
+
+            tabPageXuatKho = new TabPage("Xuất kho");
+            tabControlMain.TabPages.Add(tabPageXuatKho);
+
+            TaoNutKho();
+
+            HienThiThongTinNguoiDung();
+        }
+
+        private void TaoNutKho()
+        {
+            btnNhapKho = new Button();
+            btnNhapKho.Dock = DockStyle.Top;
+            btnNhapKho.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(163)));
+            btnNhapKho.Height = 46;
+            btnNhapKho.Text = "Nhập kho";
+            btnNhapKho.Enabled = false;
+            btnNhapKho.Click += btnNhapKho_Click;
+
+            btnXuatKho = new Button();
+            btnXuatKho.Dock = DockStyle.Top;
+            btnXuatKho.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(163)));
+            btnXuatKho.Height = 46;
+            btnXuatKho.Text = "Xuất kho";
+            btnXuatKho.Enabled = false;
+            btnXuatKho.Click += btnXuatKho_Click;
+
+            panel1.Controls.Add(btnXuatKho);
+            panel1.Controls.Add(btnNhapKho);
         }
 
         private void HienThiThongTinNguoiDung()
@@ -33,6 +68,9 @@ namespace PM_Ban_Do_An_Nhanh
                 btnSales.Enabled = true;
                 btnMenuManagement.Enabled = true;
                 btnReport.Enabled = true;
+
+                if (btnNhapKho != null) btnNhapKho.Enabled = true;
+                if (btnXuatKho != null) btnXuatKho.Enabled = true;
             }
             else
             {
@@ -102,6 +140,20 @@ namespace PM_Ban_Do_An_Nhanh
             frmDanhMuc danhmucForm = new frmDanhMuc();
             LoadFormInTabPage(danhmucForm, tabPageDanhMuc);
             tabControlMain.SelectedTab = tabPageDanhMuc;
+        }
+
+        private void btnNhapKho_Click(object sender, EventArgs e)
+        {
+            frmNhapKhoUI form = new frmNhapKhoUI();
+            LoadFormInTabPage(form, tabPageNhapKho);
+            tabControlMain.SelectedTab = tabPageNhapKho;
+        }
+
+        private void btnXuatKho_Click(object sender, EventArgs e)
+        {
+            frmXuatKhoUI form = new frmXuatKhoUI();
+            LoadFormInTabPage(form, tabPageXuatKho);
+            tabControlMain.SelectedTab = tabPageXuatKho;
         }
     }
 }
