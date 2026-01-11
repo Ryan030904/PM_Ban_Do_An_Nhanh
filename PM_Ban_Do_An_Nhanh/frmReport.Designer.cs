@@ -75,16 +75,14 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-
             // btnInBaoCao
             // 
-            this.btnInBaoCao.Location = new System.Drawing.Point(11, 340);
+            this.btnInBaoCao.Location = new System.Drawing.Point(11, 325);
             this.btnInBaoCao.Name = "btnInBaoCao";
-            this.btnInBaoCao.Size = new System.Drawing.Size(127, 23);
+            this.btnInBaoCao.Size = new System.Drawing.Size(150, 35);
             this.btnInBaoCao.TabIndex = 7;
             this.btnInBaoCao.Text = "In báo cáo";
             this.btnInBaoCao.UseVisualStyleBackColor = true;
-            this.btnInBaoCao.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnInBaoCao.Click += new System.EventHandler(this.btnInBaoCao_Click);
             // 
             // lblTotalRevenue
@@ -112,15 +110,14 @@
             // 
             // btnXemBaoCao
             // 
-            this.btnXemBaoCao.AutoSize = true;
-            this.btnXemBaoCao.Location = new System.Drawing.Point(11, 290);
+            this.btnXemBaoCao.AutoSize = false;
+            this.btnXemBaoCao.Location = new System.Drawing.Point(11, 285);
             this.btnXemBaoCao.Margin = new System.Windows.Forms.Padding(2);
             this.btnXemBaoCao.Name = "btnXemBaoCao";
-            this.btnXemBaoCao.Size = new System.Drawing.Size(105, 25);
+            this.btnXemBaoCao.Size = new System.Drawing.Size(150, 35);
             this.btnXemBaoCao.TabIndex = 4;
             this.btnXemBaoCao.Text = "Xem báo cáo";
             this.btnXemBaoCao.UseVisualStyleBackColor = true;
-            this.btnXemBaoCao.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnXemBaoCao.Click += new System.EventHandler(this.btnXemBaoCao_Click);
             // 
             // dtpDenNgay
@@ -131,7 +128,7 @@
             this.dtpDenNgay.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDenNgay.Name = "dtpDenNgay";
             this.dtpDenNgay.ShowCheckBox = true;
-            this.dtpDenNgay.Size = new System.Drawing.Size(112, 23);
+            this.dtpDenNgay.Size = new System.Drawing.Size(135, 23);
             this.dtpDenNgay.TabIndex = 3;
             // 
             // dtpTuNgay
@@ -142,7 +139,7 @@
             this.dtpTuNgay.Margin = new System.Windows.Forms.Padding(2);
             this.dtpTuNgay.Name = "dtpTuNgay";
             this.dtpTuNgay.ShowCheckBox = true;
-            this.dtpTuNgay.Size = new System.Drawing.Size(112, 23);
+            this.dtpTuNgay.Size = new System.Drawing.Size(135, 23);
             this.dtpTuNgay.TabIndex = 2;
             // 
             // label2

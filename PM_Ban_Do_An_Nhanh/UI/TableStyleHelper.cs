@@ -1,15 +1,96 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace PM_Ban_Do_An_Nhanh.UI
 {
     public static class TableStyleHelper
     {
+        private static readonly ConditionalWeakTable<DataGridView, VndFormatConfig> _vndConfigs =
+            new ConditionalWeakTable<DataGridView, VndFormatConfig>();
+
+        private sealed class VndFormatConfig
+        {
+            public HashSet<string> Columns { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        public static string FormatVnd(decimal amount)
+        {
+            return string.Format("{0:N0} VNĐ", amount);
+        }
+
+        public static void ApplyVndFormatting(DataGridView grid, params string[] columnNames)
+        {
+            if (grid == null) return;
+
+            var cfg = _vndConfigs.GetOrCreateValue(grid);
+
+            cfg.Columns = new HashSet<string>(columnNames ?? Array.Empty<string>(), StringComparer.OrdinalIgnoreCase);
+
+            foreach (var colName in cfg.Columns)
+            {
+                if (grid.Columns.Contains(colName))
+                    grid.Columns[colName].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+
+            grid.CellFormatting -= Grid_CellFormattingVnd;
+            grid.CellFormatting += Grid_CellFormattingVnd;
+
+            DisableSorting(grid);
+            grid.DataBindingComplete -= Grid_DataBindingCompleteDisableSorting;
+            grid.DataBindingComplete += Grid_DataBindingCompleteDisableSorting;
+        }
+
+        private static void Grid_CellFormattingVnd(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (!(sender is DataGridView grid)) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (e.Value == null) return;
+
+            if (!_vndConfigs.TryGetValue(grid, out var cfg)) return;
+            if (cfg.Columns == null || cfg.Columns.Count == 0) return;
+
+            var colName = grid.Columns[e.ColumnIndex]?.Name;
+            if (string.IsNullOrWhiteSpace(colName)) return;
+            if (!cfg.Columns.Contains(colName)) return;
+
+            try
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal amount))
+                {
+                    e.Value = FormatVnd(amount);
+                    e.FormattingApplied = true;
+                }
+            }
+            catch { }
+        }
+
+        public static void DisableSorting(DataGridView grid)
+        {
+            if (grid == null) return;
+            if (grid.Columns == null) return;
+
+            foreach (DataGridViewColumn col in grid.Columns)
+            {
+                if (col == null) continue;
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                if (col.HeaderCell != null)
+                    col.HeaderCell.SortGlyphDirection = SortOrder.None;
+            }
+        }
+
+        private static void Grid_DataBindingCompleteDisableSorting(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (!(sender is DataGridView grid)) return;
+            DisableSorting(grid);
+        }
+
         public static void ApplyModernStyle(DataGridView grid, string theme = "primary")
         {
             Color headerColor, accentColor;
-            
+
             switch (theme)
             {
                 case "success":
@@ -58,8 +139,8 @@ namespace PM_Ban_Do_An_Nhanh.UI
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(44, 62, 80),
                 Font = new Font("Segoe UI", 10F),
-                SelectionBackColor = Color.FromArgb(174, 214, 241),
-                SelectionForeColor = Color.FromArgb(44, 62, 80),
+                SelectionBackColor = accentColor,
+                SelectionForeColor = Color.White,
                 Padding = new Padding(8, 4, 8, 4)
             };
 
@@ -67,24 +148,33 @@ namespace PM_Ban_Do_An_Nhanh.UI
             grid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(248, 249, 250),
-                SelectionBackColor = Color.FromArgb(174, 214, 241)
+                SelectionBackColor = accentColor,
+                SelectionForeColor = Color.White
             };
 
             // Add hover effect
             grid.CellMouseEnter += (s, e) => {
                 if (e.RowIndex >= 0)
                 {
-                    grid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+                    if (!grid.Rows[e.RowIndex].Selected)
+                        grid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
                 }
             };
 
             grid.CellMouseLeave += (s, e) => {
                 if (e.RowIndex >= 0)
                 {
-                    grid.Rows[e.RowIndex].DefaultCellStyle.BackColor = 
-                        e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(248, 249, 250);
+                    if (!grid.Rows[e.RowIndex].Selected)
+                    {
+                        grid.Rows[e.RowIndex].DefaultCellStyle.BackColor =
+                            e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(248, 249, 250);
+                    }
                 }
             };
+
+            DisableSorting(grid);
+            grid.DataBindingComplete -= Grid_DataBindingCompleteDisableSorting;
+            grid.DataBindingComplete += Grid_DataBindingCompleteDisableSorting;
         }
 
         public static void AddEmptyStateMessage(DataGridView grid, string message = "Không có dữ liệu để hiển thị")

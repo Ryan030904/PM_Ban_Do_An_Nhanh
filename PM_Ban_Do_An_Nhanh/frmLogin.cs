@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using PM_Ban_Do_An_Nhanh.DAL;
 
 namespace PM_Ban_Do_An_Nhanh
 {
     public partial class frmLogin : Form
     {
        
-        private string connectionString =
-            @"Data Source=MSI\SQLEXPRESS;
-              Initial Catalog=FastFoodDB;
-              Integrated Security=True;";
-
         public frmLogin()
         {
             InitializeComponent();
@@ -38,7 +34,7 @@ namespace PM_Ban_Do_An_Nhanh
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DBConnection.GetConnection())
                 {
                     string sql = @"SELECT MaTK, TenTK, TenDangNhap
                            FROM TaiKhoan
@@ -80,7 +76,12 @@ namespace PM_Ban_Do_An_Nhanh
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối CSDL:\n" + ex.Message,
+                MessageBox.Show(
+                    "Lỗi kết nối CSDL:\n" + ex.Message +
+                    "\n\nConnectionString đang dùng:\n" + DBConnection.GetConnection().ConnectionString +
+                    "\n\nGợi ý:\n" +
+                    "- Kiểm tra lại App.config (connectionStrings: PM_Ban_Do_An_Nhanh_DB) trỏ đúng server/DB FastFoodDB\n" +
+                    "- Kiểm tra đã chạy đúng file FastFoodDB_Init.sql và có bảng TaiKhoan + tài khoản admin/admin123",
                                 "Lỗi hệ thống",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);

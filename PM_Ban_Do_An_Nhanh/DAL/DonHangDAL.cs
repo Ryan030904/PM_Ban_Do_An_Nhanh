@@ -8,6 +8,20 @@ namespace PM_Ban_Do_An_Nhanh.DAL
 {
     public class DonHangDAL
     {
+        private void EnsureSoLuongTonColumn(SqlConnection conn, SqlTransaction transaction)
+        {
+            const string sql = @"
+IF COL_LENGTH('MonAn','SoLuongTon') IS NULL
+BEGIN
+    ALTER TABLE MonAn ADD SoLuongTon INT NOT NULL CONSTRAINT DF_MonAn_SoLuongTon DEFAULT(0);
+END";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn, transaction))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public int ThemDonHang(DonHang donHang, List<ChiTietDonHang> chiTietList)
         {
             int maDonHangMoi = -1;
@@ -18,10 +32,43 @@ namespace PM_Ban_Do_An_Nhanh.DAL
 
                 try
                 {
+                    // Ensure inventory column exists
+                    try { EnsureSoLuongTonColumn(conn, transaction); } catch { }
+
                     // Check for potential duplicate orders within last 30 seconds
                     if (KiemTraDonHangTrungLap(donHang, conn, transaction))
                     {
                         throw new InvalidOperationException("Đơn hàng tương tự đã được tạo trong vòng 30 giây qua. Vui lòng kiểm tra lại.");
+                    }
+
+                    // Validate & decrement stock first (so we don't create orders for out-of-stock items)
+                    foreach (var chiTiet in chiTietList)
+                    {
+                        const string queryStock = @"SELECT ISNULL(SoLuongTon,0) FROM MonAn WITH (UPDLOCK, ROWLOCK) WHERE MaMon = @MaMon";
+                        using (SqlCommand cmdStock = new SqlCommand(queryStock, conn, transaction))
+                        {
+                            cmdStock.Parameters.AddWithValue("@MaMon", chiTiet.MaMon);
+                            object stockObj = cmdStock.ExecuteScalar();
+                            int stock = stockObj == null || stockObj == DBNull.Value ? 0 : Convert.ToInt32(stockObj);
+
+                            if (stock < chiTiet.SoLuong)
+                            {
+                                throw new InvalidOperationException(
+                                    $"Món '{chiTiet.TenMon}' không đủ tồn kho. Tồn: {stock}, cần: {chiTiet.SoLuong}.");
+                            }
+                        }
+
+                        const string queryDec = @"
+UPDATE MonAn
+SET SoLuongTon = ISNULL(SoLuongTon,0) - @SoLuong,
+    TrangThai = CASE WHEN (ISNULL(SoLuongTon,0) - @SoLuong) > 0 THEN N'Còn hàng' ELSE N'Hết hàng' END
+WHERE MaMon = @MaMon";
+                        using (SqlCommand cmdDec = new SqlCommand(queryDec, conn, transaction))
+                        {
+                            cmdDec.Parameters.AddWithValue("@MaMon", chiTiet.MaMon);
+                            cmdDec.Parameters.AddWithValue("@SoLuong", chiTiet.SoLuong);
+                            cmdDec.ExecuteNonQuery();
+                        }
                     }
 
                     // Insert main order
@@ -239,7 +286,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
                     CAST(dh.NgayLap AS DATE) AS Ngay,
                     SUM(dh.TongTien) AS DoanhThuNgay
                 FROM DonHang dh
-                WHERE 1=1";
+                WHERE dh.TrangThaiThanhToan = N'Đã thanh toán'";
 
             if (tuNgay.HasValue)
             {
@@ -333,6 +380,21 @@ namespace PM_Ban_Do_An_Nhanh.DAL
             catch (Exception)
             {
                 return -1;
+            }
+        }
+
+        public int LaySoLanMuaTheoMaKH(int maKH)
+        {
+            const string query = @"SELECT COUNT(*) FROM DonHang WHERE MaKH = @MaKH AND TrangThaiThanhToan = N'Đã thanh toán'";
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaKH", maKH);
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value) return 0;
+                return Convert.ToInt32(result);
             }
         }
     }

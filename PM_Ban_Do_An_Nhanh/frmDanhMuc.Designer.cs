@@ -43,6 +43,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnXoa);
@@ -52,9 +53,10 @@
             this.panel1.Controls.Add(this.lblTenDanhMuc);
             this.panel1.Controls.Add(this.txtMaDanhMuc);
             this.panel1.Controls.Add(this.lblMaDanhMuc);
-            this.panel1.Location = new System.Drawing.Point(0, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(260, 1000);
+            this.panel1.Size = new System.Drawing.Size(260, 450);
             this.panel1.TabIndex = 0;
             // 
             // btnXoa
@@ -67,8 +69,7 @@
             this.btnXoa.Size = new System.Drawing.Size(123, 35);
             this.btnXoa.TabIndex = 7;
             this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = false;
-            this.btnXoa.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
+            this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
@@ -81,8 +82,7 @@
             this.btnSua.Size = new System.Drawing.Size(123, 35);
             this.btnSua.TabIndex = 6;
             this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = false;
-            this.btnSua.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
+            this.btnSua.UseVisualStyleBackColor = true;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
@@ -95,8 +95,7 @@
             this.btnThem.Size = new System.Drawing.Size(123, 35);
             this.btnThem.TabIndex = 5;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = false;
-            this.btnThem.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
+            this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtTenDanhMuc
@@ -153,6 +152,7 @@
             this.dgvDanhMuc.Size = new System.Drawing.Size(514, 426);
             this.dgvDanhMuc.TabIndex = 1;
             this.dgvDanhMuc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhMuc_CellClick);
+            this.dgvDanhMuc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhMuc_CellContentClick);
             // 
             // frmDanhMuc
             // 

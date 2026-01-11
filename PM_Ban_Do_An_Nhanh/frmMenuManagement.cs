@@ -1,9 +1,10 @@
 ﻿using PM_Ban_Do_An_Nhanh.BLL;
 using PM_Ban_Do_An_Nhanh.Controls;
-using PM_Ban_Do_An_Nhanh.Forms;
 using PM_Ban_Do_An_Nhanh.Helpers;
+using PM_Ban_Do_An_Nhanh.UI;
 using PM_Ban_Do_An_Nhanh.Utils;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -26,7 +27,7 @@ namespace PM_Ban_Do_An_Nhanh
         {
             InitializeComponent();
 
-            this.Text = "🍽️ Quản lý thực đơn";
+            this.Text = "Quản lý thực đơn";
 
             // GẮN EVENT
             dgvMonAn.CellClick += dgvMonAn_CellClick;
@@ -36,19 +37,26 @@ namespace PM_Ban_Do_An_Nhanh
             btnLamMoi.Click += btnLamMoi_Click;
             btnChonHinh.Click += btnChonHinh_Click;
 
+            txtGia.Enter += (s, e) => UnformatGiaTextBox();
+            txtGia.Leave += (s, e) => FormatGiaTextBox();
+
             // Ensure we handle column visibility after binding completes
             dgvMonAn.DataBindingComplete += DgvMonAn_DataBindingComplete;
 
             // Add context menu on the grid for quick actions (Edit price)
             dgvContextMenu = new ContextMenuStrip();
-            dgvContextMenu.Items.Add("Edit price", null, DgvContext_EditPrice_Click);
+            dgvContextMenu.Items.Add("Sửa giá", null, DgvContext_EditPrice_Click);
+            dgvContextMenu.Items.Add("Nhập hàng", null, DgvContext_ImportStock_Click);
             dgvMonAn.ContextMenuStrip = dgvContextMenu;
 
             // Add cart control (dock to right) so item cards can add to cart
             cartControl = new CartControl();
             cartControl.PlaceOrderClicked += CartControl_PlaceOrderClicked;
-            this.Controls.Add(cartControl);
-            cartControl.BringToFront();
+            if (panelCartHost != null)
+            {
+                cartControl.Dock = DockStyle.Fill;
+                panelCartHost.Controls.Add(cartControl);
+            }
 
             SetupTrangThaiComboBox();
             LoadDanhMucToComboBox();
@@ -57,14 +65,61 @@ namespace PM_Ban_Do_An_Nhanh
             SetupButtonStyles();
         }
 
+        private static decimal ParseVndToDecimal(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return 0m;
+
+            string s = input.Trim();
+            // .NET Framework 4.8: string.Replace has no StringComparison overload
+            s = s.Replace("VNĐ", "")
+                 .Replace("vnđ", "")
+                 .Replace("VND", "")
+                 .Replace("vnd", "")
+                 .Replace("₫", "")
+                 .Replace("đ", "")
+                 .Replace("Đ", "")
+                 .Trim();
+
+            // Remove common thousand separators/spaces
+            s = s.Replace(" ", "").Replace(".", "").Replace(",", "");
+
+            if (decimal.TryParse(s, out decimal v)) return v;
+            return 0m;
+        }
+
+        private static string FormatDecimalToVnd(decimal value)
+        {
+            return string.Format("{0:N0} VNĐ", value);
+        }
+
+        private void FormatGiaTextBox()
+        {
+            try
+            {
+                decimal v = ParseVndToDecimal(txtGia.Text);
+                if (v > 0) txtGia.Text = FormatDecimalToVnd(v);
+            }
+            catch { }
+        }
+
+        private void UnformatGiaTextBox()
+        {
+            try
+            {
+                decimal v = ParseVndToDecimal(txtGia.Text);
+                if (v > 0) txtGia.Text = v.ToString("0");
+            }
+            catch { }
+        }
+
         // ======================= STYLE =======================
         private void SetupButtonStyles()
         {
-            ButtonStyleHelper.ApplySuccessStyle(btnThem, "➕ Thêm", "", ButtonSize.Medium);
-            ButtonStyleHelper.ApplyWarningStyle(btnSua, "✏️ Sửa", "", ButtonSize.Medium);
-            ButtonStyleHelper.ApplyDangerStyle(btnXoa, "🗑️ Xóa", "", ButtonSize.Medium);
-            ButtonStyleHelper.ApplyInfoStyle(btnLamMoi, "🔄 Làm mới", "", ButtonSize.Medium);
-            ButtonStyleHelper.ApplyPrimaryStyle(btnChonHinh, "🖼️ Chọn hình", "", ButtonSize.Medium);
+            btnThem.Text = "Thêm";
+            btnSua.Text = "Sửa";
+            btnXoa.Text = "Xóa";
+            btnLamMoi.Text = "Làm mới";
+            btnChonHinh.Text = "Chọn hình";
 
             picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
             picHinhAnh.BorderStyle = BorderStyle.FixedSingle;
@@ -86,6 +141,9 @@ namespace PM_Ban_Do_An_Nhanh
                 // Set the DataSource (columns are generated asynchronously by the binding system)
                 dgvMonAn.DataSource = dt;
                 dgvMonAn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // VNĐ formatting for price column if present
+                TableStyleHelper.ApplyVndFormatting(dgvMonAn, "Gia");
 
                 // Do NOT access dgvMonAn.Columns immediately here — wait for DataBindingComplete.
             }
@@ -121,10 +179,81 @@ namespace PM_Ban_Do_An_Nhanh
                     if (dgv.Columns.Contains("HinhAnh"))
                         dgv.Columns["HinhAnh"].Visible = false;
                 }
+
+                if (dgv.Columns.Contains("SoLuongTon"))
+                {
+                    dgv.Columns["SoLuongTon"].HeaderText = "Tồn kho";
+                    dgv.Columns["SoLuongTon"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
             }
             catch (Exception ex)
             {
                 Logger.Log(ex);
+            }
+        }
+
+        private void DgvContext_ImportStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var row = GetSelectedGridRow();
+                if (row == null)
+                {
+                    MessageBox.Show("Chưa chọn món để nhập hàng.");
+                    return;
+                }
+
+                if (row.Cells["MaMon"].Value == DBNull.Value) return;
+
+                int maMon = Convert.ToInt32(row.Cells["MaMon"].Value);
+                string tenMon = row.Cells["TenMon"].Value?.ToString() ?? "";
+
+                int soLuongNhap = PromptQuantity($"Nhập hàng - {tenMon}");
+                if (soLuongNhap <= 0) return;
+
+                bool ok = monAnBLL.NhapHang(maMon, soLuongNhap);
+                if (ok)
+                {
+                    LoadDataToDataGridView();
+                    MessageBox.Show("Nhập hàng thành công.");
+                }
+                else
+                {
+                    MessageBox.Show("Nhập hàng thất bại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex);
+                MessageBox.Show("Lỗi nhập hàng: " + ex.Message);
+            }
+        }
+
+        private int PromptQuantity(string title)
+        {
+            using (var f = new Form())
+            {
+                f.Text = title;
+                f.FormBorderStyle = FormBorderStyle.FixedDialog;
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.MinimizeBox = false;
+                f.MaximizeBox = false;
+                f.Width = 320;
+                f.Height = 160;
+
+                var lbl = new Label { Left = 12, Top = 16, Width = 280, Text = "Số lượng nhập:" };
+                var nud = new NumericUpDown { Left = 12, Top = 44, Width = 280, Minimum = 1, Maximum = 100000, Value = 1 };
+                var btnOk = new Button { Text = "OK", Left = 132, Width = 76, Top = 80, DialogResult = DialogResult.OK };
+                var btnCancel = new Button { Text = "Hủy", Left = 216, Width = 76, Top = 80, DialogResult = DialogResult.Cancel };
+
+                f.Controls.Add(lbl);
+                f.Controls.Add(nud);
+                f.Controls.Add(btnOk);
+                f.Controls.Add(btnCancel);
+                f.AcceptButton = btnOk;
+                f.CancelButton = btnCancel;
+
+                return f.ShowDialog(this) == DialogResult.OK ? (int)nud.Value : 0;
             }
         }
 
@@ -156,7 +285,17 @@ namespace PM_Ban_Do_An_Nhanh
 
             selectedMonAnId = Convert.ToInt32(row.Cells["MaMon"].Value);
             txtTenMon.Text = row.Cells["TenMon"].Value?.ToString() ?? "";
-            txtGia.Text = row.Cells["Gia"].Value?.ToString() ?? "";
+            try
+            {
+                decimal v = 0m;
+                if (row.Cells["Gia"].Value != null && row.Cells["Gia"].Value != DBNull.Value)
+                    decimal.TryParse(row.Cells["Gia"].Value.ToString(), out v);
+                txtGia.Text = v > 0 ? FormatDecimalToVnd(v) : "";
+            }
+            catch
+            {
+                txtGia.Text = row.Cells["Gia"].Value?.ToString() ?? "";
+            }
             cboDanhMuc.SelectedValue = row.Cells["MaDM"].Value;
             cboTrangThai.SelectedItem = row.Cells["TrangThai"].Value?.ToString();
 
@@ -177,7 +316,7 @@ namespace PM_Ban_Do_An_Nhanh
 
             monAnBLL.ThemMonAn(
                 txtTenMon.Text,
-                Convert.ToDecimal(txtGia.Text),
+                ParseVndToDecimal(txtGia.Text),
                 (int)cboDanhMuc.SelectedValue,
                 cboTrangThai.Text,
                 selectedImagePath
@@ -200,7 +339,7 @@ namespace PM_Ban_Do_An_Nhanh
             monAnBLL.SuaMonAn(
                 selectedMonAnId,
                 txtTenMon.Text,
-                Convert.ToDecimal(txtGia.Text),
+                ParseVndToDecimal(txtGia.Text),
                 (int)cboDanhMuc.SelectedValue,
                 cboTrangThai.Text,
                 selectedImagePath
@@ -251,7 +390,8 @@ namespace PM_Ban_Do_An_Nhanh
         private bool ValidateInput()
         {
             if (string.IsNullOrWhiteSpace(txtTenMon.Text)) return false;
-            if (!decimal.TryParse(txtGia.Text, out decimal g) || g <= 0) return false;
+            decimal g = ParseVndToDecimal(txtGia.Text);
+            if (g <= 0) return false;
             if (cboDanhMuc.SelectedValue == null) return false;
             return true;
         }
@@ -284,10 +424,10 @@ namespace PM_Ban_Do_An_Nhanh
             };
 
             var lblName = new Label { Text = $"{itemRow["MaMon"]} {itemRow["TenMon"]}", Left = 8, Top = 112, Width = 160, AutoEllipsis = true };
-            var lblPrice = new Label { Text = $"{Convert.ToDecimal(itemRow["Gia"]):N0} VND", ForeColor = Color.DarkRed, Left = 8, Top = 132, Width = 100 };
+            var lblPrice = new Label { Text = $"{Convert.ToDecimal(itemRow["Gia"]):N0} VNĐ", ForeColor = Color.DarkRed, Left = 8, Top = 132, Width = 100 };
 
             var nudQty = new NumericUpDown { Left = 170, Top = 128, Width = 44, Minimum = 1, Value = 1 };
-            var btnAdd = new Button { Text = "Add", Left = 216, Top = 126, Width = 52, BackColor = Color.FromArgb(37, 150, 84), ForeColor = Color.White };
+            var btnAdd = new Button { Text = "Thêm", Left = 216, Top = 126, Width = 52, BackColor = Color.FromArgb(37, 150, 84), ForeColor = Color.White };
 
             int maMon = Convert.ToInt32(itemRow["MaMon"]);
             string tenMon = itemRow["TenMon"].ToString();
@@ -303,8 +443,6 @@ namespace PM_Ban_Do_An_Nhanh
             pnl.Controls.Add(lblPrice);
             pnl.Controls.Add(nudQty);
             pnl.Controls.Add(btnAdd);
-
-            flowLayoutPanelItems.Controls.Add(pnl);
         }
 
         // ======================= CONTEXT MENU: EDIT PRICE =======================
@@ -386,7 +524,7 @@ namespace PM_Ban_Do_An_Nhanh
 
                 decimal total = 0m;
                 foreach (DataRow r in dt.Rows) total += Convert.ToDecimal(r["Total"]);
-                MessageBox.Show($"Placing order with {dt.Rows.Count} items. Total: {total:N0} VND");
+                MessageBox.Show($"Đang tạo đơn với {dt.Rows.Count} món. Tổng tiền: {TableStyleHelper.FormatVnd(total)}");
 
                 var copy = cartControl.GetCartTable();
                 foreach (DataRow r in copy.Rows)
@@ -401,12 +539,6 @@ namespace PM_Ban_Do_An_Nhanh
         }
     }
 }
-
-using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace PM_Ban_Do_An_Nhanh.Controls
 {
     public class CartControl : UserControl
@@ -451,8 +583,7 @@ namespace PM_Ban_Do_An_Nhanh.Controls
 
             dgvCart = new DataGridView
             {
-                Dock = DockStyle.Top,
-                Height = 360,
+                Dock = DockStyle.Fill,
                 AllowUserToAddRows = false,
                 RowHeadersVisible = false,
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -469,14 +600,14 @@ namespace PM_Ban_Do_An_Nhanh.Controls
 
             FlowLayoutPanel fl = new FlowLayoutPanel
             {
-                Dock = DockStyle.Top,
+                Dock = DockStyle.Bottom,
                 Height = 40,
                 FlowDirection = FlowDirection.RightToLeft
             };
 
             btnPlaceOrder = new Button
             {
-                Text = "Place Order",
+                Text = "Đặt hàng",
                 AutoSize = true,
                 BackColor = Color.FromArgb(37, 150, 84),
                 ForeColor = Color.White,
@@ -486,7 +617,7 @@ namespace PM_Ban_Do_An_Nhanh.Controls
 
             btnClear = new Button
             {
-                Text = "Clear",
+                Text = "Xóa hết",
                 AutoSize = true
             };
             btnClear.Click += (s, e) => Clear();
@@ -494,10 +625,18 @@ namespace PM_Ban_Do_An_Nhanh.Controls
             fl.Controls.Add(btnPlaceOrder);
             fl.Controls.Add(btnClear);
 
+            var bottom = new Panel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 72
+            };
+
+            bottom.Controls.Add(fl);
+            bottom.Controls.Add(lblTotal);
+
             // We add controls in z-order: badge on top so bring to front after adding others
-            this.Controls.Add(fl);
-            this.Controls.Add(lblTotal);
             this.Controls.Add(dgvCart);
+            this.Controls.Add(bottom);
             this.Controls.Add(lblBadge);
             lblBadge.BringToFront();
             this.Resize += (s, e) =>
@@ -527,13 +666,32 @@ namespace PM_Ban_Do_An_Nhanh.Controls
                 if (dgvCart.Columns.Contains("MaMon"))
                     dgvCart.Columns["MaMon"].Visible = false;
                 if (dgvCart.Columns.Contains("TenMon"))
+                {
                     dgvCart.Columns["TenMon"].ReadOnly = true;
+                    dgvCart.Columns["TenMon"].HeaderText = "Tên món";
+                }
                 if (dgvCart.Columns.Contains("Price"))
+                {
                     dgvCart.Columns["Price"].ReadOnly = true;
+                    dgvCart.Columns["Price"].HeaderText = "Đơn giá";
+                    dgvCart.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
                 if (dgvCart.Columns.Contains("Quantity"))
+                {
+                    dgvCart.Columns["Quantity"].HeaderText = "SL";
                     dgvCart.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+                if (dgvCart.Columns.Contains("Total"))
+                {
+                    dgvCart.Columns["Total"].HeaderText = "Thành tiền";
+                    dgvCart.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvCart.Columns["Total"].ReadOnly = true;
+                }
             }
             catch { /* ignore initial binding timing issues */ }
+
+            // VNĐ formatting for cart grid
+            TableStyleHelper.ApplyVndFormatting(dgvCart, "Price", "Total");
 
             dgvCart.CellEndEdit += DgvCart_CellEndEdit;
 
@@ -542,7 +700,8 @@ namespace PM_Ban_Do_An_Nhanh.Controls
                 var btnCol = new DataGridViewButtonColumn
                 {
                     Name = "Remove",
-                    Text = "Remove",
+                    HeaderText = "Xóa",
+                    Text = "Xóa",
                     UseColumnTextForButtonValue = true,
                     Width = 70,
                     FlatStyle = FlatStyle.Standard
@@ -587,7 +746,7 @@ namespace PM_Ban_Do_An_Nhanh.Controls
             {
                 total += Convert.ToDecimal(r["Total"]);
             }
-            lblTotal.Text = $"Total: {total:N0} VND";
+            lblTotal.Text = "Tổng: " + TableStyleHelper.FormatVnd(total);
         }
 
         private int GetTotalQuantity()
@@ -659,6 +818,75 @@ namespace PM_Ban_Do_An_Nhanh.Controls
             cartTable.Rows.Clear();
             UpdateTotal();
             UpdateBadge();
+        }
+    }
+}
+
+namespace PM_Ban_Do_An_Nhanh
+{
+    public class frmEditPrice : Form
+    {
+        private readonly NumericUpDown nudPrice;
+        private readonly Button btnOk;
+        private readonly Button btnCancel;
+
+        public decimal NewPrice { get; private set; }
+
+        public frmEditPrice(decimal currentPrice)
+        {
+            Text = "Chỉnh giá";
+            StartPosition = FormStartPosition.CenterParent;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            ShowInTaskbar = false;
+            ClientSize = new Size(320, 120);
+
+            nudPrice = new NumericUpDown
+            {
+                Left = 16,
+                Top = 16,
+                Width = 280,
+                Minimum = 0,
+                Maximum = decimal.MaxValue,
+                DecimalPlaces = 0,
+                ThousandsSeparator = true,
+                Value = currentPrice < 0 ? 0 : currentPrice
+            };
+
+            btnOk = new Button
+            {
+                Text = "Lưu",
+                Width = 90,
+                Height = 30,
+                Left = 116,
+                Top = 64,
+                DialogResult = DialogResult.OK
+            };
+
+            btnCancel = new Button
+            {
+                Text = "Hủy",
+                Width = 90,
+                Height = 30,
+                Left = 206,
+                Top = 64,
+                DialogResult = DialogResult.Cancel
+            };
+
+            btnOk.Click += (s, e) =>
+            {
+                NewPrice = nudPrice.Value;
+                DialogResult = DialogResult.OK;
+                Close();
+            };
+
+            Controls.Add(nudPrice);
+            Controls.Add(btnOk);
+            Controls.Add(btnCancel);
+
+            AcceptButton = btnOk;
+            CancelButton = btnCancel;
         }
     }
 }

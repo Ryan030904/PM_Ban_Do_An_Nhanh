@@ -15,5 +15,6 @@ namespace PM_Ban_Do_An_Nhanh.Entities
         public string TrangThai { get; set; }
         public string TenDanhMuc { get; set; }
         public string HinhAnh { get; set; } // Thay đổi từ byte[] thành string để lưu đường dẫn
+        public int SoLuongTon { get; set; }
     }
 }

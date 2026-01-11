@@ -20,6 +20,9 @@ namespace PM_Ban_Do_An_Nhanh.DAL
             {
                 // prefer App.config value if available (try to read, but don't crash if System.Configuration missing)
                 null,
+                // this project's configured instance
+                @"Data Source=lpc:QuiNguyen\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True",
+                @"Data Source=QuiNguyen\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True",
                 // common developer machine instance used in frmLogin
                 @"Data Source=MSI\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True",
                 // fallback to local default
@@ -75,7 +78,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
             }
 
             // If none worked, fall back to a sensible default (may still fail at runtime)
-            connectionString = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
+            connectionString = @"Data Source=lpc:QuiNguyen\SQLEXPRESS;Initial Catalog=FastFoodDB;Integrated Security=True;TrustServerCertificate=True";
         }
 
         public static System.Data.SqlClient.SqlConnection GetConnection()

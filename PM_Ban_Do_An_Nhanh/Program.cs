@@ -26,7 +26,7 @@ namespace PM_Ban_Do_An_Nhanh
             {
                 try
                 {
-                    MessageBox.Show("Unhandled UI exception:\n" + e.Exception.Message + "\n" + e.Exception.StackTrace,
+                    MessageBox.Show("Lỗi giao diện (UI):\n" + e.Exception.Message + "\n" + e.Exception.StackTrace,
                         "Lỗi ứng dụng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch { }
@@ -37,7 +37,7 @@ namespace PM_Ban_Do_An_Nhanh
                 try
                 {
                     var ex = e.ExceptionObject as Exception;
-                    MessageBox.Show("Unhandled non-UI exception:\n" + (ex?.Message ?? e.ExceptionObject.ToString()) + "\n" + (ex?.StackTrace ?? ""),
+                    MessageBox.Show("Lỗi hệ thống:\n" + (ex?.Message ?? e.ExceptionObject.ToString()) + "\n" + (ex?.StackTrace ?? ""),
                         "Lỗi ứng dụng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch { }

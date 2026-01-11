@@ -10,7 +10,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
         public DataTable LayDanhSachKhachHang()
         {
             DataTable dt = new DataTable();
-            string query = "SELECT MaKH, TenKH, SDT, DiaChi, Email, NgaySinh FROM KhachHang";
+            string query = "SELECT MaKH, TenKH, SDT, DiaChi FROM KhachHang";
             using (SqlConnection conn = DBConnection.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -23,10 +23,37 @@ namespace PM_Ban_Do_An_Nhanh.DAL
             return dt;
         }
 
+        public DataTable LayDanhSachKhachHangTomTat()
+        {
+            DataTable dt = new DataTable();
+            const string query = @"
+                SELECT
+                    kh.MaKH,
+                    kh.TenKH,
+                    kh.SDT,
+                    COUNT(dh.MaDH) AS SoLanMua,
+                    ISNULL(SUM(dh.TongTien), 0) AS TongChiTieu
+                FROM KhachHang kh
+                LEFT JOIN DonHang dh
+                    ON dh.MaKH = kh.MaKH
+                    AND dh.TrangThaiThanhToan = N'Đã thanh toán'
+                GROUP BY kh.MaKH, kh.TenKH, kh.SDT
+                ORDER BY kh.TenKH";
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
+
         public KhachHang LayThongTinKhachHangBySDT(string sdt)
         {
             KhachHang kh = null;
-            string query = "SELECT MaKH, TenKH, SDT, DiaChi, Email, NgaySinh FROM KhachHang WHERE SDT = @SDT";
+            string query = "SELECT MaKH, TenKH, SDT, DiaChi FROM KhachHang WHERE SDT = @SDT";
             using (SqlConnection conn = DBConnection.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -42,9 +69,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
                                 MaKH = Convert.ToInt32(reader["MaKH"]),
                                 TenKH = reader["TenKH"].ToString(),
                                 SDT = reader["SDT"].ToString(),
-                                DiaChi = reader["DiaChi"].ToString(),
-                                Email = reader["Email"] == DBNull.Value ? null : reader["Email"].ToString(),
-                                NgaySinh = reader["NgaySinh"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["NgaySinh"])
+                                DiaChi = reader["DiaChi"].ToString()
                             };
                         }
                     }
@@ -55,7 +80,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
 
         public bool ThemKhachHang(KhachHang khachHang)
         {
-            string query = "INSERT INTO KhachHang (TenKH, SDT, DiaChi, Email, NgaySinh) VALUES (@TenKH, @SDT, @DiaChi, @Email, @NgaySinh)";
+            string query = "INSERT INTO KhachHang (TenKH, SDT, DiaChi) VALUES (@TenKH, @SDT, @DiaChi)";
             using (SqlConnection conn = DBConnection.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -63,8 +88,6 @@ namespace PM_Ban_Do_An_Nhanh.DAL
                     cmd.Parameters.AddWithValue("@TenKH", khachHang.TenKH);
                     cmd.Parameters.AddWithValue("@SDT", khachHang.SDT);
                     cmd.Parameters.AddWithValue("@DiaChi", (object)khachHang.DiaChi ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Email", (object)khachHang.Email ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@NgaySinh", (object)khachHang.NgaySinh ?? DBNull.Value);
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -73,7 +96,7 @@ namespace PM_Ban_Do_An_Nhanh.DAL
         }
         public bool CapNhatKhachHang(KhachHang khachHang)
         {
-            string query = "UPDATE KhachHang SET TenKH = @TenKH, DiaChi = @DiaChi, Email = @Email, NgaySinh = @NgaySinh WHERE SDT = @SDT";
+            string query = "UPDATE KhachHang SET TenKH = @TenKH, DiaChi = @DiaChi WHERE SDT = @SDT";
             using (SqlConnection conn = DBConnection.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -81,8 +104,6 @@ namespace PM_Ban_Do_An_Nhanh.DAL
                     cmd.Parameters.AddWithValue("@TenKH", khachHang.TenKH);
                     cmd.Parameters.AddWithValue("@SDT", khachHang.SDT);
                     cmd.Parameters.AddWithValue("@DiaChi", (object)khachHang.DiaChi ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Email", (object)khachHang.Email ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@NgaySinh", (object)khachHang.NgaySinh ?? DBNull.Value);
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;

@@ -76,7 +76,7 @@ namespace PM_Ban_Do_An_Nhanh
             this.mainTabControl.Controls.Add(this.tabCustomer);
             this.mainTabControl.Controls.Add(this.tabHistory);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabControl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.mainTabControl.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.mainTabControl.ItemSize = new System.Drawing.Size(120, 40);
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
@@ -87,13 +87,13 @@ namespace PM_Ban_Do_An_Nhanh
             // 
             // tabOrder
             // 
-            this.tabOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.tabOrder.BackColor = System.Drawing.SystemColors.Control;
             this.tabOrder.Location = new System.Drawing.Point(4, 44);
             this.tabOrder.Name = "tabOrder";
             this.tabOrder.Padding = new System.Windows.Forms.Padding(16);
             this.tabOrder.Size = new System.Drawing.Size(1392, 752);
             this.tabOrder.TabIndex = 0;
-            this.tabOrder.Text = "🛒 Đặt hàng";
+            this.tabOrder.Text = "Đặt hàng";
 
             // Ensure pnlMonAn is added to tabOrder and fills the area so menu items are visible
             this.pnlMonAn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -103,31 +103,31 @@ namespace PM_Ban_Do_An_Nhanh
             // tabCustomer
             // 
             this.tabCustomer.Controls.Add(this.dgvKhachHang);
-            this.tabCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.tabCustomer.BackColor = System.Drawing.SystemColors.Control;
             this.tabCustomer.Location = new System.Drawing.Point(4, 44);
             this.tabCustomer.Name = "tabCustomer";
             this.tabCustomer.Padding = new System.Windows.Forms.Padding(16);
             this.tabCustomer.Size = new System.Drawing.Size(1392, 752);
             this.tabCustomer.TabIndex = 1;
-            this.tabCustomer.Text = "👥 Khách hàng";
+            this.tabCustomer.Text = "Khách hàng";
 
             // 
             // tabHistory
             // 
             this.tabHistory.Controls.Add(this.dgvHoaDon);
-            this.tabHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.tabHistory.BackColor = System.Drawing.SystemColors.Control;
             this.tabHistory.Location = new System.Drawing.Point(4, 44);
             this.tabHistory.Name = "tabHistory";
             this.tabHistory.Padding = new System.Windows.Forms.Padding(16);
             this.tabHistory.Size = new System.Drawing.Size(1392, 752);
             this.tabHistory.TabIndex = 2;
-            this.tabHistory.Text = "📋 Lịch sử";
+            this.tabHistory.Text = "Lịch sử";
 
             // 
             // pnlMonAn
             // 
             this.pnlMonAn.AutoScroll = true;
-            this.pnlMonAn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.pnlMonAn.BackColor = System.Drawing.SystemColors.Control;
             this.pnlMonAn.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
             this.pnlMonAn.WrapContents = true;
             this.pnlMonAn.Name = "pnlMonAn";
@@ -190,55 +190,55 @@ namespace PM_Ban_Do_An_Nhanh
             this.dgvHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellClick);
 
              this.lblTongTien.Text = "0 VNĐ";
-             this.lblTongTien.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-             this.lblTongTien.ForeColor = System.Drawing.Color.White;
+             this.lblTongTien.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+             this.lblTongTien.ForeColor = System.Drawing.Color.Black;
 
              this.lblTenKhachHang.Text = "Khách lẻ";
-             this.lblTenKhachHang.Font = new System.Drawing.Font("Segoe UI", 10F);
+             this.lblTenKhachHang.Font = new System.Drawing.Font("Arial", 10F);
 
-             this.txtSDTKhachHang.Font = new System.Drawing.Font("Segoe UI", 12F);
+             this.txtSDTKhachHang.Font = new System.Drawing.Font("Arial", 10F);
 
-             this.txtSearchMenu.Font = new System.Drawing.Font("Segoe UI", 11F);
+             this.txtSearchMenu.Font = new System.Drawing.Font("Arial", 10F);
 
              // Buttons basic setup
-             this.btnTimKH.Text = "🔍 Tìm kiếm";
+             this.btnTimKH.Text = "Tìm kiếm";
              this.btnTimKH.Click += new System.EventHandler(this.btnTimKH_Click);
 
-             this.btnXoaKH.Text = "❌ Xóa chọn";
+             this.btnXoaKH.Text = "Xóa chọn";
              this.btnXoaKH.Click += new System.EventHandler(this.btnXoaKH_Click);
 
-             this.btnPlusItem.Text = "➕";
+             this.btnPlusItem.Text = "+";
              this.btnPlusItem.Click += new System.EventHandler(this.btnPlusItem_Click);
 
-             this.btnMinusItem.Text = "➖";
+             this.btnMinusItem.Text = "-";
              this.btnMinusItem.Click += new System.EventHandler(this.btnMinusItem_Click);
 
-             this.btnRemoveItem.Text = "🗑️";
+             this.btnRemoveItem.Text = "Xóa";
              this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
 
-             this.btnThanhToan.Text = "💳 THANH TOÁN";
+             this.btnThanhToan.Text = "THANH TOÁN";
              this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
 
-             this.btnHuyDon.Text = "❌ HỦY ĐƠN";
+             this.btnHuyDon.Text = "HỦY ĐƠN";
              this.btnHuyDon.Click += new System.EventHandler(this.btnHuyDon_Click);
 
-             this.btnPrint.Text = "🖨️ In hóa đơn";
+             this.btnPrint.Text = "In hóa đơn";
              this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
 
-             this.btnExportPdf.Text = "📄 Xuất PDF";
+             this.btnExportPdf.Text = "Xuất PDF";
              this.btnExportPdf.Click += new System.EventHandler(this.btnExportPdf_Click);
 
             // Form properties
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1400, 800);
             this.Controls.Add(this.mainTabControl);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Arial", 10F);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "frmSales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "🍔 Hệ thống bán hàng - FastFood Manager";
+            this.Text = "Bán hàng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 
             this.mainTabControl.ResumeLayout(false);

@@ -12,7 +12,5 @@ namespace PM_Ban_Do_An_Nhanh.Entities
         public string TenKH { get; set; }
         public string SDT { get; set; }
         public string DiaChi { get; set; }
-        public string Email { get; set; }
-        public DateTime? NgaySinh { get; set; }
     }
 }

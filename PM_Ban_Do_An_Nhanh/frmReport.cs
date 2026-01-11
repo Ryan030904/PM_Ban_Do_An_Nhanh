@@ -4,18 +4,90 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
+using PM_Ban_Do_An_Nhanh.BLL;
+using PM_Ban_Do_An_Nhanh.DAL;
+using PM_Ban_Do_An_Nhanh.UI;
 
 namespace PM_Ban_Do_An_Nhanh
 {
     public partial class frmReport : Form
     {
-        // 👉 Chuỗi kết nối SQL Server (sửa lại tên server + database nếu cần)
-        private readonly string connectionString =
-            @"Data Source=.;Initial Catalog=PM_Ban_Do_An_Nhanh;Integrated Security=True";
+        private readonly string connectionString = DBConnection.GetConnection().ConnectionString;
+        private readonly DonHangBLL donHangBLL = new DonHangBLL();
 
         public frmReport()
         {
             InitializeComponent();
+
+            this.Load += frmReport_Load;
+        }
+
+        private void frmReport_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvDoanhThu != null)
+                {
+                    dgvDoanhThu.AllowUserToAddRows = false;
+                    dgvDoanhThu.AllowUserToDeleteRows = false;
+                    dgvDoanhThu.ReadOnly = true;
+                    dgvDoanhThu.MultiSelect = false;
+                    dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+
+                if (dgvMonBanChay != null)
+                {
+                    dgvMonBanChay.AllowUserToAddRows = false;
+                    dgvMonBanChay.AllowUserToDeleteRows = false;
+                    dgvMonBanChay.ReadOnly = true;
+                    dgvMonBanChay.MultiSelect = false;
+                    dgvMonBanChay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvMonBanChay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                LoadDoanhThu();
+                LoadMonBanChay();
+            }
+            catch
+            {
+            }
+        }
+
+        private void NormalizeDateRange(ref DateTime? tuNgay, ref DateTime? denNgay)
+        {
+            if (!tuNgay.HasValue) return;
+            if (!denNgay.HasValue) return;
+
+            if (tuNgay.Value.Date > denNgay.Value.Date)
+            {
+                var tmp = tuNgay;
+                tuNgay = denNgay;
+                denNgay = tmp;
+
+                try
+                {
+                    if (dtpTuNgay != null)
+                    {
+                        dtpTuNgay.Checked = true;
+                        dtpTuNgay.Value = tuNgay.Value;
+                    }
+                    if (dtpDenNgay != null)
+                    {
+                        dtpDenNgay.Checked = true;
+                        dtpDenNgay.Value = denNgay.Value;
+                    }
+                }
+                catch
+                {
+                }
+            }
         }
 
         // ===================== FIX LỖI DESIGNER =====================
@@ -64,75 +136,40 @@ namespace PM_Ban_Do_An_Nhanh
 
         private void LoadDoanhThu()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand())
+            DateTime? tuNgay = dtpTuNgay.Checked ? dtpTuNgay.Value.Date : (DateTime?)null;
+            DateTime? denNgay = dtpDenNgay.Checked ? dtpDenNgay.Value.Date : (DateTime?)null;
+
+            NormalizeDateRange(ref tuNgay, ref denNgay);
+
+            DataTable dt = donHangBLL.LayThongKeDoanhThu(tuNgay, denNgay) ?? new DataTable();
+            dgvDoanhThu.DataSource = dt;
+
+            // VNĐ formatting for revenue column
+            TableStyleHelper.ApplyVndFormatting(dgvDoanhThu, "DoanhThuNgay");
+
+            // Tính tổng doanh thu
+            decimal total = 0;
+            foreach (DataRow row in dt.Rows)
             {
-                cmd.Connection = conn;
-                cmd.CommandText = @"
-                    SELECT 
-                        CAST(NgayLap AS DATE) AS Ngay,
-                        SUM(TongTien) AS DoanhThuNgay
-                    FROM HoaDon
-                    WHERE (@TuNgay IS NULL OR NgayLap >= @TuNgay)
-                      AND (@DenNgay IS NULL OR NgayLap <= @DenNgay)
-                    GROUP BY CAST(NgayLap AS DATE)
-                    ORDER BY Ngay";
-
-                cmd.Parameters.AddWithValue("@TuNgay",
-                    dtpTuNgay.Checked ? (object)dtpTuNgay.Value.Date : DBNull.Value);
-
-                cmd.Parameters.AddWithValue("@DenNgay",
-                    dtpDenNgay.Checked ? (object)dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1) : DBNull.Value);
-
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-
-                dgvDoanhThu.DataSource = dt;
-
-                // Tính tổng doanh thu
-                decimal total = 0;
-                foreach (DataRow row in dt.Rows)
-                {
-                    if (row["DoanhThuNgay"] != DBNull.Value)
-                        total += Convert.ToDecimal(row["DoanhThuNgay"]);
-                }
-
-                lblTotalRevenue.Text = total.ToString("N0") + " VNĐ";
+                if (dt.Columns.Contains("DoanhThuNgay") && row["DoanhThuNgay"] != DBNull.Value)
+                    total += Convert.ToDecimal(row["DoanhThuNgay"]);
             }
+
+            lblTotalRevenue.Text = TableStyleHelper.FormatVnd(total);
         }
 
         private void LoadMonBanChay()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.Connection = conn;
-                cmd.CommandText = @"
-                    SELECT 
-                        m.TenMon,
-                        SUM(ct.SoLuong) AS TongSoLuongBan,
-                        SUM(ct.ThanhTien) AS TongDoanhThuMon
-                    FROM ChiTietHoaDon ct
-                    JOIN MonAn m ON ct.MaMon = m.MaMon
-                    JOIN HoaDon h ON ct.MaHoaDon = h.MaHoaDon
-                    WHERE (@TuNgay IS NULL OR h.NgayLap >= @TuNgay)
-                      AND (@DenNgay IS NULL OR h.NgayLap <= @DenNgay)
-                    GROUP BY m.TenMon
-                    ORDER BY TongSoLuongBan DESC";
+            DateTime? tuNgay = dtpTuNgay.Checked ? dtpTuNgay.Value.Date : (DateTime?)null;
+            DateTime? denNgay = dtpDenNgay.Checked ? dtpDenNgay.Value.Date : (DateTime?)null;
 
-                cmd.Parameters.AddWithValue("@TuNgay",
-                    dtpTuNgay.Checked ? (object)dtpTuNgay.Value.Date : DBNull.Value);
+            NormalizeDateRange(ref tuNgay, ref denNgay);
 
-                cmd.Parameters.AddWithValue("@DenNgay",
-                    dtpDenNgay.Checked ? (object)dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1) : DBNull.Value);
+            DataTable dt = donHangBLL.LayMonAnBanChay(tuNgay, denNgay, 10) ?? new DataTable();
+            dgvMonBanChay.DataSource = dt;
 
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-
-                dgvMonBanChay.DataSource = dt;
-            }
+            // VNĐ formatting for total revenue per item
+            TableStyleHelper.ApplyVndFormatting(dgvMonBanChay, "TongDoanhThuMon");
         }
     }
 }

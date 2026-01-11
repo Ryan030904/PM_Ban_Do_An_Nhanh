@@ -45,6 +45,7 @@
             this.txtGia = new System.Windows.Forms.TextBox();
             this.txtTenMon = new System.Windows.Forms.TextBox();
             this.dgvMonAn = new System.Windows.Forms.DataGridView();
+            this.panelCartHost = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonAn)).BeginInit();
@@ -67,11 +68,12 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtGia);
             this.panel1.Controls.Add(this.txtTenMon);
+            this.panel1.AutoScroll = true;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(260, 593);
+            this.panel1.Size = new System.Drawing.Size(260, 700);
             this.panel1.TabIndex = 0;
             // 
             // btnChonHinh
@@ -80,10 +82,9 @@
             this.btnChonHinh.Name = "btnChonHinh";
             this.btnChonHinh.Size = new System.Drawing.Size(180, 40);
             this.btnChonHinh.TabIndex = 14;
-            this.btnChonHinh.Text = "🖼️ Chọn hình";
+            this.btnChonHinh.Text = "Chọn hình";
             this.btnChonHinh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnChonHinh.UseVisualStyleBackColor = true;
-            this.btnChonHinh.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnChonHinh.Click += new System.EventHandler(this.btnChonHinh_Click);
             // 
             // picHinhAnh
@@ -111,10 +112,9 @@
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(180, 40);
             this.btnLamMoi.TabIndex = 11;
-            this.btnLamMoi.Text = "🔄 Làm mới";
+            this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.UseVisualStyleBackColor = true;
-            this.btnLamMoi.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // btnXoa
@@ -123,10 +123,9 @@
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(180, 40);
             this.btnXoa.TabIndex = 10;
-            this.btnXoa.Text = "🗑️ Xóa món";
+            this.btnXoa.Text = "Xóa món";
             this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
@@ -135,10 +134,9 @@
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(180, 40);
             this.btnSua.TabIndex = 9;
-            this.btnSua.Text = "✏️ Sửa món";
+            this.btnSua.Text = "Sửa món";
             this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSua.UseVisualStyleBackColor = true; 
-            this.btnSua.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
+            this.btnSua.UseVisualStyleBackColor = true;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
@@ -147,10 +145,9 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(180, 40);
             this.btnThem.TabIndex = 8;
-            this.btnThem.Text = "➕ Thêm món";
+            this.btnThem.Text = "Thêm món";
             this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Padding = new System.Windows.Forms.Padding(10, 5, 25, 20);
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // cboTrangThai
@@ -223,20 +220,29 @@
             // 
             this.dgvMonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMonAn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMonAn.Location = new System.Drawing.Point(280, 0);
+            this.dgvMonAn.Location = new System.Drawing.Point(260, 0);
             this.dgvMonAn.Name = "dgvMonAn";
             this.dgvMonAn.RowHeadersWidth = 51;
             this.dgvMonAn.RowTemplate.Height = 24;
-            this.dgvMonAn.Size = new System.Drawing.Size(520, 593);
+            this.dgvMonAn.Size = new System.Drawing.Size(640, 700);
             this.dgvMonAn.TabIndex = 1;
             this.dgvMonAn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMonAn_CellClick);
+            // 
+            // panelCartHost
+            // 
+            this.panelCartHost.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelCartHost.Location = new System.Drawing.Point(900, 0);
+            this.panelCartHost.Name = "panelCartHost";
+            this.panelCartHost.Size = new System.Drawing.Size(320, 700);
+            this.panelCartHost.TabIndex = 2;
             // 
             // frmMenuManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 593);
+            this.ClientSize = new System.Drawing.Size(1220, 700);
             this.Controls.Add(this.dgvMonAn);
+            this.Controls.Add(this.panelCartHost);
             this.Controls.Add(this.panel1);
             this.Name = "frmMenuManagement";
             this.Text = "Quản lý thực đơn";
@@ -251,21 +257,22 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnChonHinh;
+        private System.Windows.Forms.PictureBox picHinhAnh;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboTrangThai;
         private System.Windows.Forms.ComboBox cboDanhMuc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTenMon;
         private System.Windows.Forms.TextBox txtGia;
+        private System.Windows.Forms.TextBox txtTenMon;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.DataGridView dgvMonAn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox picHinhAnh;
-        private System.Windows.Forms.Button btnChonHinh;
+        private System.Windows.Forms.Panel panelCartHost;
     }
 }

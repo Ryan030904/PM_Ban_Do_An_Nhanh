@@ -75,10 +75,43 @@ namespace PM_Ban_Do_An_Nhanh.Helpers
             {
                 if (string.IsNullOrEmpty(imagePath)) return null;
 
-                string fullPath = Path.Combine(Application.StartupPath, imagePath);
-                if (File.Exists(fullPath))
+                // If an absolute path was provided, try it first.
+                if (Path.IsPathRooted(imagePath))
                 {
-                    return Image.FromFile(fullPath);
+                    if (File.Exists(imagePath))
+                        return Image.FromFile(imagePath);
+                }
+
+                // Normalize separators and remove any leading slashes so Combine behaves
+                // predictably on different inputs (e.g. "Images\\MenuItems\\a.jpg", "a.jpg", "/Images/a.jpg").
+                string normalized = imagePath
+                    .Replace('/', Path.DirectorySeparatorChar)
+                    .Replace('\\', Path.DirectorySeparatorChar)
+                    .TrimStart(Path.DirectorySeparatorChar);
+
+                // Candidate locations (most-specific first)
+                string[] candidates = new[]
+                {
+                    // e.g. <startup>\Images\MenuItems\xxx.jpg OR if imagePath already contains subfolders
+                    Path.Combine(Application.StartupPath, normalized),
+                    Path.Combine(Application.StartupPath, "Images", normalized),
+                    Path.Combine(Application.StartupPath, "Images", "MenuItems", normalized),
+                    // fallbacks using only the file name
+                    Path.Combine(Application.StartupPath, "Images", "MenuItems", Path.GetFileName(normalized)),
+                    Path.Combine(Application.StartupPath, "Images", Path.GetFileName(normalized))
+                };
+
+                foreach (var fullPath in candidates)
+                {
+                    try
+                    {
+                        if (File.Exists(fullPath))
+                            return Image.FromFile(fullPath);
+                    }
+                    catch
+                    {
+                        // ignore and try next candidate
+                    }
                 }
             }
             catch (Exception)

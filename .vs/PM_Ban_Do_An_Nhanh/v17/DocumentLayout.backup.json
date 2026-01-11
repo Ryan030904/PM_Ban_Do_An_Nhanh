@@ -1,117 +1,181 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\PM_Ban_Do_An_Nhanh\\",
+  "WorkspaceRootPath": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\tradaocamsa.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\tradaocamsa.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\sprite-lon.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\sprite-lon.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\socola-lava.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\socola-lava.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\salad-ganuong.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\salad-ganuong.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\pizza-thitnguoi.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\pizza-thitnguoi.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\pizza-haisan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\pizza-haisan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\images\\bunxao.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\bunxao.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\forms\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\forms\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\b\u00E1o c\u00E1o ltnet\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\frmsales.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmdanhmuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmdanhmuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmdanhmuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmdanhmuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmkhuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmkhuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmsales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\bunxao.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\bunxao.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\soldout.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\soldout.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\burger-cangu.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\burger-cangu.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\burger-bo-phomai.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\burger-bo-phomai.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\forms\\frmcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\forms\\frmcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\sprite-lon.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\sprite-lon.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\forms\\frmcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\forms\\frmcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\monandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\tradaocamsa.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\tradaocamsa.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\socola-lava.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\socola-lava.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\salad-ganuong.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\salad-ganuong.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\pizza-thitnguoi.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\pizza-thitnguoi.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\images\\pizza-haisan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\images\\pizza-haisan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmenumanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\frmsales.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\frmsales.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|D:\\PM_Ban_Do_An_Nhanh\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\defaultdbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\defaultdbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hoquo\\AppData\\Local\\Temp\\tmpE91C.tmp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\dal\\idbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\dal\\idbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\bll\\monanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\bll\\monanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\bll\\monanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PM_Ban_Do_An_Nhanh\\csharp||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:csharp||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\menuitemcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\menuitemcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\menuitemcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|d:\\pm_ban_do_an_nhanh\\pm_ban_do_an_nhanh\\utils\\imageseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\pm_ban_do_an_nhanh\\utils\\imageseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8D14EF6-5A90-46FB-8EB2-AF8C195D539C}|PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh.csproj|solutionrelative:pm_ban_do_an_nhanh\\utils\\imageseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PM_Ban_Do_An_Nhanh\\DBConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -120,8 +184,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 34,
+          "DockedWidth": 578,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -141,10 +205,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
@@ -156,265 +216,18 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:19:03.377Z",
-              "EditorCaption": " - Bitmap [240x210, 24 bit, JPG]"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:19:02.169Z",
-              "EditorCaption": " - Bitmap [201x251, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:19:01.543Z",
-              "EditorCaption": " - Bitmap [300x168, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:19:00.873Z",
-              "EditorCaption": " - Bitmap [275x183, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:18:59.792Z",
-              "EditorCaption": " - Bitmap [227x222, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:18:58.537Z",
-              "EditorCaption": " - Bitmap [268x188, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-22T09:18:50.15Z",
-              "EditorCaption": " - Bitmap [300x168, 24 bit, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "frmSales.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T09:16:44.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "frmMenuManagement.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
-              "ViewState": "AgIAAIIBAAAAAAAAAAAjwJgCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T08:52:05.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ImageSeeder.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAABBwFsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T08:50:18.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "MenuItemCard.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAMBUwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T08:36:40.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Logger.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T08:35:23.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "frmLogin.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T07:58:30.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "tmpE91C.tmp.cs",
-              "DocumentMoniker": "C:\\Users\\hoquo\\AppData\\Local\\Temp\\tmpE91C.tmp.cs",
-              "ToolTip": "C:\\Users\\hoquo\\AppData\\Local\\Temp\\tmpE91C.tmp.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAApwCUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T07:32:13.129Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "frmSales.Designer.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
-              "ViewState": "AgIAAE8BAAAAAAAAAAAjwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T07:30:38.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "frmLogin.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "RelativeDocumentMoniker": "csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "RelativeToolTip": "csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T07:28:15.876Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Program.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Program.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Program.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Program.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAjwAMAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T07:24:45.403Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "frmMain.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMain.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMain.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T06:34:28.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "MonAnBLL.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAjwBgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T07:24:17.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DBConnection.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T07:29:47.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "frmSales.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
               "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmSales.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
               "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmSales.cs",
-              "ViewState": "AgIAAJABAAAAAAAAAAAnwDcBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALICAAAAAAAAAAAcwMACAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-15T07:25:50.826Z",
               "EditorCaption": ""
@@ -422,23 +235,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MonAnDAL.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAMwGgAAAAAAAAAAAAAAA==",
+              "Title": "frmAddCustomer.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T06:49:01.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T04:38:45.016Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 4,
+              "Title": "frmDanhMuc.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-05T04:38:48.623Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmKhuyenMai.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmKhuyenMai.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmKhuyenMai.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmKhuyenMai.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmKhuyenMai.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T01:46:27.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": ".editorconfig",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\.editorconfig",
+              "RelativeDocumentMoniker": ".editorconfig",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\.editorconfig",
+              "RelativeToolTip": ".editorconfig",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-15T07:16:39.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "DefaultDbConnection.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAjwCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:09:27.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
               "Title": "csharp",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\csharp",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp",
               "RelativeDocumentMoniker": "csharp",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\csharp",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp",
               "RelativeToolTip": "csharp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
@@ -446,68 +303,439 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": ".editorconfig",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\.editorconfig",
-              "RelativeDocumentMoniker": ".editorconfig",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\.editorconfig",
-              "RelativeToolTip": ".editorconfig",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-15T07:16:39.89Z",
-              "EditorCaption": ""
+              "DocumentIndex": 34,
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "RelativeDocumentMoniker": "csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "RelativeToolTip": "csharp PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T07:28:15.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "tmpE91C.tmp.cs",
+              "DocumentMoniker": "C:\\Users\\hoquo\\AppData\\Local\\Temp\\tmpE91C.tmp.cs",
+              "ToolTip": "C:\\Users\\hoquo\\AppData\\Local\\Temp\\tmpE91C.tmp.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAApwCUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T07:32:13.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "frmSales.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Forms\\frmSales.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T09:16:44.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "DBConnection.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:29:47.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "IDBConnection.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:09:18.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmDanhMuc.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmDanhMuc.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAAwG0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T09:04:59.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-05T04:38:47.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmMain.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMain.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T00:55:52.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmAddCustomer.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmAddCustomer.cs",
+              "ViewState": "AgIAAKABAAAAAAAAAAAlwK8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T09:05:37.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmMenuManagement.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-05T04:38:51.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "frmReport.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmReport.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmReport.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmReport.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmReport.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T00:55:51.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmSales.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmSales.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmSales.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T00:49:45.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\bunxao.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:18:50.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "soldout.png - PNG [256x197, 8 bit, PNG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\soldout.png",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\soldout.png",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\soldout.png - PNG [256x197, 8 bit, PNG]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\soldout.png - PNG [256x197, 8 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-01-07T01:49:29.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "burger-cangu.jpg - Bitmap [259x194, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\burger-cangu.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\burger-cangu.jpg",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\burger-cangu.jpg - Bitmap [259x194, 24 bit, JPG]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\burger-cangu.jpg - Bitmap [259x194, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-01-07T01:46:13.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "burger-bo-phomai.jpg - Bitmap [1500x1000, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\burger-bo-phomai.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\burger-bo-phomai.jpg",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\burger-bo-phomai.jpg - Bitmap [1500x1000, 24 bit, JPG]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\burger-bo-phomai.jpg - Bitmap [1500x1000, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-01-07T01:46:12.473Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Program.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Program.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Program.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T07:24:45.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "frmCart.cs [Design]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs [Design]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T15:32:48.456Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "DefaultDbConnection.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DefaultDbConnection.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAjwCEAAAABAAAAAAAAAA==",
+              "Title": "frmCart.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Forms\\frmCart.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAAIwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T07:09:27.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-02T15:32:51.655Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "IDBConnection.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\IDBConnection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T07:09:18.364Z",
-              "EditorCaption": ""
+              "DocumentIndex": 24,
+              "Title": "socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "RelativeToolTip": "..\\..\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\socola-lava.jpg - Bitmap [300x168, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:19:01.543Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DBConnection.cs",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAjwGcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T06:51:11.045Z",
-              "EditorCaption": ""
+              "DocumentIndex": 16,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\App.config",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-12-15T06:45:38.764Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
-              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\App.config",
-              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\App.config",
-              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-15T06:45:38.764Z",
-              "EditorCaption": ""
+              "Title": "DBConnection.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\DBConnection.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAjwE0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T06:51:11.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Images\\sprite-lon.jpg - Bitmap [201x251, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:19:02.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\User.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\User.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\User.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T15:53:24.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
+              "RelativeToolTip": "..\\..\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\tradaocamsa.jpg - Bitmap [240x210, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:19:03.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
+              "RelativeToolTip": "..\\..\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\salad-ganuong.jpg - Bitmap [275x183, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:19:00.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
+              "RelativeToolTip": "..\\..\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-thitnguoi.jpg - Bitmap [227x222, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:18:59.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg",
+              "ToolTip": "D:\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
+              "RelativeToolTip": "..\\..\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Images\\pizza-haisan.jpg - Bitmap [268x188, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-22T09:18:58.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "frmMenuManagement.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMenuManagement.cs",
+              "ViewState": "AgIAAIIBAAAAAAAAAAAjwJgCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T08:52:05.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ImageSeeder.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Utils\\ImageSeeder.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAABBwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T08:50:18.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "MenuItemCard.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\MenuItemCard.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAMBUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T08:36:40.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\Utils\\Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T08:35:23.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmLogin.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T07:58:30.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "frmSales.Designer.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmSales.Designer.cs",
+              "ViewState": "AgIAAE8BAAAAAAAAAAAjwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T07:30:38.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\frmMain.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T06:34:28.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "MonAnBLL.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\BLL\\MonAnBLL.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAjwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:24:17.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MonAnDAL.cs",
+              "DocumentMoniker": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "RelativeDocumentMoniker": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "ToolTip": "D:\\b\u00E1o c\u00E1o LTNet\\PM_Ban_Do_An_Nhanh\\PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "RelativeToolTip": "PM_Ban_Do_An_Nhanh\\DAL\\MonAnDAL.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAMwGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T06:49:01.863Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 539,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

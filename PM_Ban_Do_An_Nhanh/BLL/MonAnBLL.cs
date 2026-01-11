@@ -135,6 +135,19 @@ namespace PM_Ban_Do_An_Nhanh.BLL
                 return false;
             }
         }
+
+        public bool NhapHang(int maMon, int soLuongNhap)
+        {
+            try
+            {
+                return monAnDAL.NhapHang(maMon, soLuongNhap);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex);
+                return false;
+            }
+        }
     }
 }
 

@@ -18,29 +18,34 @@ namespace PM_Ban_Do_An_Nhanh.BLL
             return khachHangDAL.LayDanhSachKhachHang();
         }
 
+        public DataTable HienThiDanhSachKhachHangTomTat()
+        {
+            return khachHangDAL.LayDanhSachKhachHangTomTat();
+        }
+
         public KhachHang LayThongTinKhachHangBySDT(string sdt)
         {
             if (string.IsNullOrWhiteSpace(sdt)) return null;
             return khachHangDAL.LayThongTinKhachHangBySDT(sdt);
         }
 
-        public bool ThemKhachHang(string tenKH, string sdt, string diaChi, string email, DateTime? ngaySinh)
+        public bool ThemKhachHang(string tenKH, string sdt, string diaChi)
         {
             if (string.IsNullOrWhiteSpace(tenKH) || string.IsNullOrWhiteSpace(sdt))
             {
                 return false;
             }
-            KhachHang kh = new KhachHang { TenKH = tenKH, SDT = sdt, DiaChi = diaChi, Email = email, NgaySinh = ngaySinh };
+            KhachHang kh = new KhachHang { TenKH = tenKH, SDT = sdt, DiaChi = diaChi };
             return khachHangDAL.ThemKhachHang(kh);
         }
 
-        public bool CapNhatKhachHang(string tenKH, string sdt, string diaChi, string email, DateTime? ngaySinh)
+        public bool CapNhatKhachHang(string tenKH, string sdt, string diaChi)
         {
             if (string.IsNullOrWhiteSpace(tenKH) || string.IsNullOrWhiteSpace(sdt))
             {
                 return false;
             }
-            KhachHang kh = new KhachHang { TenKH = tenKH, SDT = sdt, DiaChi = diaChi, Email = email, NgaySinh = ngaySinh };
+            KhachHang kh = new KhachHang { TenKH = tenKH, SDT = sdt, DiaChi = diaChi };
             return khachHangDAL.CapNhatKhachHang(kh);
         }
 

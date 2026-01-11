@@ -13,6 +13,46 @@ namespace PM_Ban_Do_An_Nhanh
     public partial class frmMain : Form
     {
         private TabPage tabPageDanhMuc;
+        private TabPage tabPageKhuyenMai;
+        private bool isHandlingTabSelection;
+
+        private static string FixVietnameseMojibake(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return input;
+
+            try
+            {
+                // Common case: UTF-8 bytes were interpreted as Latin1/Windows-1252 -> shows as "Quá°£n trá»‹"
+                var latin1 = Encoding.GetEncoding(28591); // ISO-8859-1
+                var bytes = latin1.GetBytes(input);
+                var candidate = Encoding.UTF8.GetString(bytes);
+
+                // Heuristic: if candidate contains Vietnamese letters and original looks like mojibake
+                if (ContainsVietnameseLetters(candidate) && !ContainsVietnameseLetters(input))
+                    return candidate;
+
+                // Also accept candidate if it removes typical mojibake symbols
+                if (candidate.IndexOfAny(new[] { '°', '»', '¼', '½', '¾', '¿', 'Ã', 'Â', 'á' }) < 0 &&
+                    input.IndexOfAny(new[] { '°', '»', '¼', '½', '¾', '¿', 'Ã', 'Â', 'á' }) >= 0)
+                    return candidate;
+            }
+            catch
+            {
+            }
+
+            return input;
+        }
+
+        private static bool ContainsVietnameseLetters(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            foreach (var ch in s)
+            {
+                if ("ăâđêôơưáàảãạéèẻẽẹíìỉĩịóòỏõọúùủũụýỳỷỹỵĂÂĐÊÔƠƯÁÀẢÃẠÉÈẺẼẸÍÌỈĨỊÓÒỎÕỌÚÙỦŨỤÝỲỶỸỴ".IndexOf(ch) >= 0)
+                    return true;
+            }
+            return false;
+        }
 
         public frmMain()
         {
@@ -21,13 +61,61 @@ namespace PM_Ban_Do_An_Nhanh
             HienThiThongTinNguoiDung();
             // Do not create the tab page here — create it lazily when needed to avoid
             // possible duplication or issues if designer changes tabControl.
+
+            tabControlMain.SelectedIndexChanged += tabControlMain_SelectedIndexChanged;
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isHandlingTabSelection) return;
+            if (tabControlMain == null) return;
+            if (tabControlMain.SelectedTab == null) return;
+
+            isHandlingTabSelection = true;
+            try
+            {
+                var selected = tabControlMain.SelectedTab;
+
+                if (selected == tabPageSales)
+                {
+                    LoadFormInTabPage(new frmSales(), ref tabPageSales, tabPageSales.Text);
+                }
+                else if (selected == tabPageCustomer)
+                {
+                    LoadFormInTabPage(new frmAddCustomer("", false, true), ref tabPageCustomer, tabPageCustomer.Text);
+                }
+                else if (selected == tabPageMenu)
+                {
+                    LoadFormInTabPage(new frmMenuManagement(), ref tabPageMenu, tabPageMenu.Text);
+                }
+                else if (selected == tabPageReport)
+                {
+                    LoadFormInTabPage(new frmReport(), ref tabPageReport, tabPageReport.Text);
+                }
+                else if (selected.Text == "Danh Mục")
+                {
+                    // If user selects Danh Mục tab from the top, ensure content is loaded.
+                    if (tabPageDanhMuc == null) tabPageDanhMuc = selected;
+                    LoadFormInTabPage(new frmDanhMuc(), ref tabPageDanhMuc, "Danh Mục");
+                }
+                else if (selected.Text == "Khuyến mãi")
+                {
+                    if (tabPageKhuyenMai == null) tabPageKhuyenMai = selected;
+                    LoadFormInTabPage(new frmKhuyenMai(), ref tabPageKhuyenMai, "Khuyến mãi");
+                }
+            }
+            finally
+            {
+                isHandlingTabSelection = false;
+            }
         }
 
         private void HienThiThongTinNguoiDung()
         {
             if (GlobalVariables.LoggedInUser != null)
             {
-                lblUserInfo.Text = $"Xin chào, {GlobalVariables.LoggedInUser.TenTK}";
+                var ten = FixVietnameseMojibake(GlobalVariables.LoggedInUser.TenTK);
+                lblUserInfo.Text = $"Xin chào, {ten}";
                 btnSales.Enabled = true;
                 btnMenuManagement.Enabled = true;
                 btnReport.Enabled = true;
@@ -49,7 +137,8 @@ namespace PM_Ban_Do_An_Nhanh
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            frmAddCustomer khachHangForm = new frmAddCustomer();
+            // Main customer screen: searchable management (search + edit/delete)
+            frmAddCustomer khachHangForm = new frmAddCustomer("", false, true);
             LoadFormInTabPage(khachHangForm, ref tabPageCustomer, "Khách hàng");
             tabControlMain.SelectedTab = tabPageCustomer;
         }
@@ -118,6 +207,8 @@ namespace PM_Ban_Do_An_Nhanh
                 if (existing.GetType() == childForm.GetType())
                 {
                     tabControlMain.SelectedTab = tabPageField;
+                    childForm.Close();
+                    childForm.Dispose();
                     return;
                 }
                 else
@@ -150,6 +241,19 @@ namespace PM_Ban_Do_An_Nhanh
             frmDanhMuc danhmucForm = new frmDanhMuc();
             LoadFormInTabPage(danhmucForm, ref tabPageDanhMuc, "Danh Mục");
             tabControlMain.SelectedTab = tabPageDanhMuc;
+        }
+
+        private void btnKhuyenMai_Click(object sender, EventArgs e)
+        {
+            if (tabPageKhuyenMai == null)
+            {
+                tabPageKhuyenMai = new TabPage("Khuyến mãi");
+                tabControlMain.TabPages.Add(tabPageKhuyenMai);
+            }
+
+            frmKhuyenMai khuyenMaiForm = new frmKhuyenMai();
+            LoadFormInTabPage(khuyenMaiForm, ref tabPageKhuyenMai, "Khuyến mãi");
+            tabControlMain.SelectedTab = tabPageKhuyenMai;
         }
     }
 }
