@@ -233,6 +233,42 @@ WHERE MaMon = @MaMon";
             return dt;
         }
 
+        public bool XoaDonHang(int maDH)
+        {
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        const string sqlDeleteDetails = @"DELETE FROM ChiTietDonHang WHERE MaDH = @MaDH";
+                        using (SqlCommand cmd = new SqlCommand(sqlDeleteDetails, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@MaDH", maDH);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        const string sqlDeleteOrder = @"DELETE FROM DonHang WHERE MaDH = @MaDH";
+                        int affected;
+                        using (SqlCommand cmd = new SqlCommand(sqlDeleteOrder, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@MaDH", maDH);
+                            affected = cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        return affected > 0;
+                    }
+                    catch (Exception)
+                    {
+                        try { transaction.Rollback(); } catch { }
+                        return false;
+                    }
+                }
+            }
+        }
+
         public DataTable LayDanhSachDonHang(DateTime? tuNgay = null, DateTime? denNgay = null)
         {
             DataTable dt = new DataTable();
@@ -256,7 +292,7 @@ WHERE MaMon = @MaMon";
             {
                 query += " AND CAST(dh.NgayLap AS DATE) <= @DenNgay";
             }
-            query += " ORDER BY dh.NgayLap DESC";
+            query += " ORDER BY dh.MaDH ASC";
 
             using (SqlConnection conn = DBConnection.GetConnection())
             {

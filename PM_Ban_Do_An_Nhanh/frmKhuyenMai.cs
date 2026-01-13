@@ -86,11 +86,12 @@ namespace PM_Ban_Do_An_Nhanh
             dt.Columns.Add("DieuKien", typeof(string));
             dt.Columns.Add("GiamGia", typeof(string));
 
-            dt.Rows.Add("Thành Viên (Member)", "0 - 500.000", "2%");
-            dt.Rows.Add("Bạc (Silver)", "> 500.000", "5%");
-            dt.Rows.Add("Vàng (Gold)", "> 2.000.000", "8%");
-            dt.Rows.Add("Bạch Kim (Platinum)", "> 5.000.000", "12%");
-            dt.Rows.Add("Kim Cương (Diamond)", "> 8.000.000", "15%");
+            dt.Rows.Add("Thành Viên (Member)", "0 - < 500.000", "2%");
+            dt.Rows.Add("Bạc (Silver)", ">= 500.000", "5%");
+            dt.Rows.Add("Vàng (Gold)", ">= 2.000.000", "8%");
+            dt.Rows.Add("Bạch Kim (Platinum)", ">= 5.000.000", "12%");
+            dt.Rows.Add("Kim Cương (Diamond)", ">= 8.000.000", "15%");
+            dt.Rows.Add("VIP", ">= 12.000.000", "20%");
 
             dgv.DataSource = dt;
 

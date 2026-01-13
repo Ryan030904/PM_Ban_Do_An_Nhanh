@@ -7,6 +7,23 @@ namespace PM_Ban_Do_An_Nhanh.DAL
 {
     public class MonAnDAL
     {
+        private void ReseedMonAnIdentityIfNeeded(SqlConnection conn)
+        {
+            const string sql = @"
+DECLARE @maxId INT = ISNULL((SELECT MAX(MaMon) FROM MonAn), 0);
+DECLARE @currentId INT = ISNULL(CONVERT(INT, IDENT_CURRENT('MonAn')), 0);
+IF (@currentId > @maxId)
+BEGIN
+    DECLARE @cmd NVARCHAR(200) = N'DBCC CHECKIDENT (''MonAn'', RESEED, ' + CAST(@maxId AS NVARCHAR(20)) + N')';
+    EXEC(@cmd);
+END";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         private void EnsureSoLuongTonColumn(SqlConnection conn)
         {
             const string sql = @"
@@ -74,6 +91,7 @@ END";
 
                 conn.Open();
                 try { EnsureSoLuongTonColumn(conn); } catch { }
+                try { ReseedMonAnIdentityIfNeeded(conn); } catch { }
                 object result = cmd.ExecuteScalar();
                 return result != null ? Convert.ToInt32(result) : 0;
             }
@@ -137,6 +155,10 @@ WHERE MaMon = @MaMon";
                 cmd.Parameters.AddWithValue("@MaMon", maMon);
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    try { ReseedMonAnIdentityIfNeeded(conn); } catch { }
+                }
                 return rowsAffected > 0;
             }
         }

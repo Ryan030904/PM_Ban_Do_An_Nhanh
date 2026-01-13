@@ -129,6 +129,9 @@
     <Compile Include="MenuItemCard.Designer.cs">
       <DependentUpon>MenuItemCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoScrollComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\TableStyleHelper.cs" />

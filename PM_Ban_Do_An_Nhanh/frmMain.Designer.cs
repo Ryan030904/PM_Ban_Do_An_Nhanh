@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDanhMuc = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.btnKhuyenMai = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.btnReport = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -40,16 +42,14 @@
             this.btnKhachHang = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel0 = new System.Windows.Forms.Panel();
             this.btnSales = new System.Windows.Forms.Button();
+            this.panel0 = new System.Windows.Forms.Panel();
             this.lblUserInfo = new System.Windows.Forms.Label();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSales = new System.Windows.Forms.TabPage();
             this.tabPageCustomer = new System.Windows.Forms.TabPage();
             this.tabPageMenu = new System.Windows.Forms.TabPage();
             this.tabPageReport = new System.Windows.Forms.TabPage();
-            this.btnKhuyenMai = new System.Windows.Forms.Button();
-            this.btnDanhMuc = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,15 +76,49 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0);
-            this.panel1.Size = new System.Drawing.Size(234, 474);
+            this.panel1.Size = new System.Drawing.Size(234, 720);
             this.panel1.TabIndex = 0;
+            // 
+            // btnDanhMuc
+            // 
+            this.btnDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDanhMuc.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDanhMuc.Location = new System.Drawing.Point(0, 353);
+            this.btnDanhMuc.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDanhMuc.Name = "btnDanhMuc";
+            this.btnDanhMuc.Size = new System.Drawing.Size(234, 46);
+            this.btnDanhMuc.TabIndex = 12;
+            this.btnDanhMuc.Text = "Quản lý danh mục";
+            this.btnDanhMuc.UseVisualStyleBackColor = true;
+            this.btnDanhMuc.Click += new System.EventHandler(this.btnDanhMuc_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 341);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(234, 12);
+            this.panel8.TabIndex = 10;
+            // 
+            // btnKhuyenMai
+            // 
+            this.btnKhuyenMai.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnKhuyenMai.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.btnKhuyenMai.Location = new System.Drawing.Point(0, 295);
+            this.btnKhuyenMai.Margin = new System.Windows.Forms.Padding(0);
+            this.btnKhuyenMai.Name = "btnKhuyenMai";
+            this.btnKhuyenMai.Size = new System.Drawing.Size(234, 46);
+            this.btnKhuyenMai.TabIndex = 11;
+            this.btnKhuyenMai.Text = "Khuyến mãi";
+            this.btnKhuyenMai.UseVisualStyleBackColor = true;
+            this.btnKhuyenMai.Click += new System.EventHandler(this.btnKhuyenMai_Click);
             // 
             // btnLogout
             // 
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLogout.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLogout.Location = new System.Drawing.Point(0, 428);
+            this.btnLogout.Location = new System.Drawing.Point(0, 674);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(0);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(234, 46);
@@ -96,26 +130,17 @@
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 322);
+            this.panel7.Location = new System.Drawing.Point(0, 283);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(234, 12);
             this.panel7.TabIndex = 8;
             // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 401);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(234, 12);
-            this.panel8.TabIndex = 10;
-            // 
             // btnReport
             // 
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReport.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnReport.Location = new System.Drawing.Point(0, 276);
+            this.btnReport.Location = new System.Drawing.Point(0, 237);
             this.btnReport.Margin = new System.Windows.Forms.Padding(0);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(234, 46);
@@ -128,7 +153,7 @@
             // 
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 247);
+            this.panel5.Location = new System.Drawing.Point(0, 225);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(234, 12);
@@ -147,7 +172,7 @@
             // 
             this.btnMenuManagement.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMenuManagement.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnMenuManagement.Location = new System.Drawing.Point(0, 201);
+            this.btnMenuManagement.Location = new System.Drawing.Point(0, 179);
             this.btnMenuManagement.Margin = new System.Windows.Forms.Padding(0);
             this.btnMenuManagement.Name = "btnMenuManagement";
             this.btnMenuManagement.Size = new System.Drawing.Size(234, 46);
@@ -159,7 +184,7 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 172);
+            this.panel4.Location = new System.Drawing.Point(0, 167);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(234, 12);
@@ -169,7 +194,7 @@
             // 
             this.btnKhachHang.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnKhachHang.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnKhachHang.Location = new System.Drawing.Point(0, 126);
+            this.btnKhachHang.Location = new System.Drawing.Point(0, 121);
             this.btnKhachHang.Margin = new System.Windows.Forms.Padding(0);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.Size = new System.Drawing.Size(234, 46);
@@ -182,7 +207,7 @@
             // 
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 97);
+            this.panel2.Location = new System.Drawing.Point(0, 109);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 12);
@@ -197,15 +222,6 @@
             this.panel3.Size = new System.Drawing.Size(234, 12);
             this.panel3.TabIndex = 3;
             // 
-            // panel0
-            // 
-            this.panel0.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel0.Location = new System.Drawing.Point(0, 51);
-            this.panel0.Margin = new System.Windows.Forms.Padding(0);
-            this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(234, 12);
-            this.panel0.TabIndex = 1;
-            // 
             // btnSales
             // 
             this.btnSales.Dock = System.Windows.Forms.DockStyle.Top;
@@ -218,6 +234,15 @@
             this.btnSales.Text = "Bán hàng";
             this.btnSales.UseVisualStyleBackColor = true;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            // 
+            // panel0
+            // 
+            this.panel0.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel0.Location = new System.Drawing.Point(0, 51);
+            this.panel0.Margin = new System.Windows.Forms.Padding(0);
+            this.panel0.Name = "panel0";
+            this.panel0.Size = new System.Drawing.Size(234, 12);
+            this.panel0.TabIndex = 1;
             // 
             // lblUserInfo
             // 
@@ -233,11 +258,11 @@
             // 
             // tabControlMain
             // 
+            this.tabControlMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControlMain.Controls.Add(this.tabPageSales);
             this.tabControlMain.Controls.Add(this.tabPageCustomer);
             this.tabControlMain.Controls.Add(this.tabPageMenu);
             this.tabControlMain.Controls.Add(this.tabPageReport);
-            this.tabControlMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.ItemSize = new System.Drawing.Size(0, 1);
             this.tabControlMain.Location = new System.Drawing.Point(234, 0);
@@ -245,8 +270,8 @@
             this.tabControlMain.Padding = new System.Drawing.Point(0, 0);
             this.tabControlMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(1046, 720);
             this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControlMain.Size = new System.Drawing.Size(513, 474);
             this.tabControlMain.TabIndex = 1;
             // 
             // tabPageSales
@@ -255,10 +280,11 @@
             this.tabPageSales.Name = "tabPageSales";
             this.tabPageSales.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageSales.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPageSales.Size = new System.Drawing.Size(505, 465);
+            this.tabPageSales.Size = new System.Drawing.Size(1038, 711);
             this.tabPageSales.TabIndex = 0;
             this.tabPageSales.Text = "Bán hàng";
             this.tabPageSales.UseVisualStyleBackColor = true;
+            this.tabPageSales.Click += new System.EventHandler(this.tabPageSales_Click);
             // 
             // tabPageCustomer
             // 
@@ -290,34 +316,6 @@
             this.tabPageReport.Text = "Báo cáo";
             this.tabPageReport.UseVisualStyleBackColor = true;
             // 
-            // btnKhuyenMai
-            // 
-            this.btnKhuyenMai.AutoSize = false;
-            this.btnKhuyenMai.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnKhuyenMai.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.btnKhuyenMai.Location = new System.Drawing.Point(0, 355);
-            this.btnKhuyenMai.Margin = new System.Windows.Forms.Padding(0);
-            this.btnKhuyenMai.Name = "btnKhuyenMai";
-            this.btnKhuyenMai.Size = new System.Drawing.Size(234, 46);
-            this.btnKhuyenMai.TabIndex = 11;
-            this.btnKhuyenMai.Text = "Khuyến mãi";
-            this.btnKhuyenMai.UseVisualStyleBackColor = true;
-            this.btnKhuyenMai.Click += new System.EventHandler(this.btnKhuyenMai_Click);
-            // 
-            // btnDanhMuc
-            // 
-            this.btnDanhMuc.AutoSize = false;
-            this.btnDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDanhMuc.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDanhMuc.Location = new System.Drawing.Point(0, 413);
-            this.btnDanhMuc.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDanhMuc.Name = "btnDanhMuc";
-            this.btnDanhMuc.Size = new System.Drawing.Size(234, 46);
-            this.btnDanhMuc.TabIndex = 12;
-            this.btnDanhMuc.Text = "Quản lý danh mục";
-            this.btnDanhMuc.UseVisualStyleBackColor = true;
-            this.btnDanhMuc.Click += new System.EventHandler(this.btnDanhMuc_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,10 +329,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-
             this.tabControlMain.ResumeLayout(false);
             this.ResumeLayout(false);
 

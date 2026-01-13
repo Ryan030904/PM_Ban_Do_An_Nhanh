@@ -34,10 +34,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
+            this.btnNhapHang = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.cboTrangThai = new System.Windows.Forms.ComboBox();
-            this.cboDanhMuc = new System.Windows.Forms.ComboBox();
+            this.cboTrangThai = new PM_Ban_Do_An_Nhanh.NoScrollComboBox();
+            this.cboDanhMuc = new PM_Ban_Do_An_Nhanh.NoScrollComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +59,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnLamMoi);
             this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.Controls.Add(this.btnNhapHang);
             this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.cboTrangThai);
@@ -108,10 +110,10 @@
             // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(60, 620);
+            this.btnLamMoi.Location = new System.Drawing.Point(60, 670);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(180, 40);
-            this.btnLamMoi.TabIndex = 11;
+            this.btnLamMoi.TabIndex = 12;
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.UseVisualStyleBackColor = true;
@@ -119,14 +121,25 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(60, 570);
+            this.btnXoa.Location = new System.Drawing.Point(60, 620);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(180, 40);
-            this.btnXoa.TabIndex = 10;
+            this.btnXoa.TabIndex = 11;
             this.btnXoa.Text = "Xóa món";
             this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnNhapHang
+            // 
+            this.btnNhapHang.Location = new System.Drawing.Point(60, 570);
+            this.btnNhapHang.Name = "btnNhapHang";
+            this.btnNhapHang.Size = new System.Drawing.Size(180, 40);
+            this.btnNhapHang.TabIndex = 10;
+            this.btnNhapHang.Text = "Nhập hàng";
+            this.btnNhapHang.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnNhapHang.UseVisualStyleBackColor = true;
+            this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
             // 
             // btnSua
             // 
@@ -260,18 +273,19 @@
         private System.Windows.Forms.Button btnChonHinh;
         private System.Windows.Forms.PictureBox picHinhAnh;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cboTrangThai;
-        private System.Windows.Forms.ComboBox cboDanhMuc;
+        private System.Windows.Forms.Button btnLamMoi;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnNhapHang;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnThem;
+        private PM_Ban_Do_An_Nhanh.NoScrollComboBox cboTrangThai;
+        private PM_Ban_Do_An_Nhanh.NoScrollComboBox cboDanhMuc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtGia;
         private System.Windows.Forms.TextBox txtTenMon;
-        private System.Windows.Forms.Button btnLamMoi;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.DataGridView dgvMonAn;
         private System.Windows.Forms.Panel panelCartHost;
     }

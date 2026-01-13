@@ -41,6 +41,7 @@
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.SuspendLayout();
@@ -148,7 +149,8 @@
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaKH,
             this.TenKH,
-            this.SDT});
+            this.SDT,
+            this.Rank});
             this.dgvKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKhachHang.Location = new System.Drawing.Point(320, 0);
             this.dgvKhachHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -186,6 +188,15 @@
             this.SDT.ReadOnly = true;
             this.SDT.Width = 110;
             // 
+            // Rank
+            // 
+            this.Rank.DataPropertyName = "Rank";
+            this.Rank.HeaderText = "Hạng";
+            this.Rank.MinimumWidth = 6;
+            this.Rank.Name = "Rank";
+            this.Rank.ReadOnly = true;
+            this.Rank.Width = 90;
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -216,6 +227,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenKH;
         private System.Windows.Forms.DataGridViewTextBoxColumn SDT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rank;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
     }

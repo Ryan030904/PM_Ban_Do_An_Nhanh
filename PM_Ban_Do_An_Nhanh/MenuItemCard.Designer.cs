@@ -27,7 +27,7 @@ namespace PM_Ban_Do_An_Nhanh
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
+            this.nudQuantity = new NoScrollNumericUpDown();
             this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();

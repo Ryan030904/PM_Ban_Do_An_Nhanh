@@ -102,6 +102,12 @@ namespace PM_Ban_Do_An_Nhanh.BLL
         {
             return donHangDAL.LayMonAnBanChay(tuNgay, denNgay, topN);
         }
+
+        public bool XoaDonHang(int maDH)
+        {
+            return donHangDAL.XoaDonHang(maDH);
+        }
+
         public string XoaTatCaDonHang()
         {
             try

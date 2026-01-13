@@ -22,6 +22,14 @@ namespace PM_Ban_Do_An_Nhanh
         private DataTable allCustomersDt;
         private bool suppressFilter;
 
+        private Panel rightHost;
+        private FlowLayoutPanel pnlStatusFilter;
+        private ComboBox cboStatusFilter;
+        private bool statusFilterInitialized;
+        private string currentStatusMode = "Active";
+
+        private string editingSdtOld;
+
         private TextBox txtLookupTen;
         private TextBox txtLookupSDT;
         private FlowLayoutPanel pnlLookupTop;
@@ -33,6 +41,24 @@ namespace PM_Ban_Do_An_Nhanh
             this.enableSearch = enableSearch;
             this.Text = isLookupOnly ? "Tra cứu khách hàng" : "Thêm khách hàng mới";
             txtSDT.Text = sdt;
+
+            try
+            {
+                txtTenKH.Leave += (s, e) =>
+                {
+                    try
+                    {
+                        string raw = txtTenKH.Text;
+                        string normalized = khachHangBLL.ChuanHoaTenKhachHang(raw);
+                        if (!string.Equals(raw ?? "", normalized ?? "", StringComparison.Ordinal))
+                            txtTenKH.Text = normalized;
+                    }
+                    catch { }
+                };
+            }
+            catch { }
+
+            EnsureStatusFilterUI();
             LoadKhachHangToGridView();
             SetupButtonStyles();
 
@@ -40,6 +66,76 @@ namespace PM_Ban_Do_An_Nhanh
                 ApplyLookupOnlyMode();
             else if (this.enableSearch)
                 ApplySearchMode();
+        }
+
+        private void EnsureStatusFilterUI()
+        {
+            if (statusFilterInitialized) return;
+
+            try
+            {
+                cboStatusFilter = new ComboBox
+                {
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    Width = 180
+                };
+                cboStatusFilter.Items.AddRange(new object[] { "Đang hoạt động", "Đã ẩn", "Tất cả" });
+                cboStatusFilter.SelectedIndex = 0;
+                currentStatusMode = "Active";
+                cboStatusFilter.SelectedIndexChanged += (s, e) =>
+                {
+                    currentStatusMode = GetStatusMode();
+                    LoadKhachHangToGridView();
+                };
+
+                if (dgvKhachHang != null && dgvKhachHang.Parent == this)
+                {
+                    Controls.Remove(dgvKhachHang);
+
+                    rightHost = new Panel { Dock = DockStyle.Fill };
+                    Controls.Add(rightHost);
+                    rightHost.BringToFront();
+
+                    pnlStatusFilter = new FlowLayoutPanel
+                    {
+                        Dock = DockStyle.Top,
+                        Height = 46,
+                        FlowDirection = FlowDirection.LeftToRight,
+                        WrapContents = false,
+                        Padding = new Padding(12, 10, 12, 6)
+                    };
+
+                    var lblMode = new Label { Text = "Hiển thị:", AutoSize = true, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(0, 6, 0, 0) };
+                    pnlStatusFilter.Controls.Add(lblMode);
+                    pnlStatusFilter.Controls.Add(cboStatusFilter);
+
+                    dgvKhachHang.Dock = DockStyle.Fill;
+                    rightHost.Controls.Add(dgvKhachHang);
+                    rightHost.Controls.Add(pnlStatusFilter);
+                }
+
+                statusFilterInitialized = true;
+            }
+            catch
+            {
+                statusFilterInitialized = true;
+            }
+        }
+
+        private string GetStatusMode()
+        {
+            try
+            {
+                if (cboStatusFilter == null) return currentStatusMode;
+                string t = cboStatusFilter.SelectedItem?.ToString() ?? "";
+                if (string.Equals(t, "Đang hoạt động", StringComparison.OrdinalIgnoreCase)) return "Active";
+                if (string.Equals(t, "Đã ẩn", StringComparison.OrdinalIgnoreCase)) return "Inactive";
+                return "All";
+            }
+            catch
+            {
+                return currentStatusMode;
+            }
         }
 
         private void ApplySearchMode()
@@ -88,6 +184,7 @@ namespace PM_Ban_Do_An_Nhanh
                     txtSDT.Width = width;
                     txtSDT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
                 }
+
 
                 if (btnLuu != null)
                 {
@@ -157,6 +254,13 @@ namespace PM_Ban_Do_An_Nhanh
                     pnlLookupTop.Controls.Add(txtLookupTen);
                     pnlLookupTop.Controls.Add(lblSdt);
                     pnlLookupTop.Controls.Add(txtLookupSDT);
+
+                    if (cboStatusFilter != null)
+                    {
+                        var lblMode = new Label { Text = "Hiển thị:", AutoSize = true, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(12, 6, 0, 0) };
+                        pnlLookupTop.Controls.Add(lblMode);
+                        pnlLookupTop.Controls.Add(cboStatusFilter);
+                    }
 
                     txtLookupTen.TextChanged += Filter_TextChanged;
                     txtLookupSDT.TextChanged += Filter_TextChanged;
@@ -234,6 +338,14 @@ namespace PM_Ban_Do_An_Nhanh
             string sdt = txtSDT.Text.Trim();
             string diaChi = "";
 
+            try
+            {
+                tenKH = khachHangBLL.ChuanHoaTenKhachHang(tenKH);
+                if (!string.Equals(txtTenKH.Text ?? "", tenKH ?? "", StringComparison.Ordinal))
+                    txtTenKH.Text = tenKH;
+            }
+            catch { }
+
             if (string.IsNullOrWhiteSpace(tenKH) || string.IsNullOrWhiteSpace(sdt))
             {
                 MessageBox.Show("Vui lòng nhập Tên khách hàng và Số điện thoại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -246,7 +358,22 @@ namespace PM_Ban_Do_An_Nhanh
 
                 if (btnLuu.Text == "Cập nhật")
                 {
-                    success = khachHangBLL.CapNhatKhachHang(tenKH, sdt, diaChi);
+                    string sdtCu = (editingSdtOld ?? "").Trim();
+
+                    if (!string.IsNullOrWhiteSpace(sdtCu) && !string.Equals(sdtCu, sdt, StringComparison.OrdinalIgnoreCase))
+                    {
+                        var existed = khachHangBLL.LayThongTinKhachHangBySDT(sdt);
+                        if (existed != null)
+                        {
+                            MessageBox.Show("Số điện thoại này đã tồn tại trong hệ thống. Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(sdtCu))
+                        success = khachHangBLL.CapNhatKhachHangTheoSdtCu(tenKH, sdt, diaChi, sdtCu);
+                    else
+                        success = khachHangBLL.CapNhatKhachHang(tenKH, sdt, diaChi);
                     if (success)
                     {
                         MessageBox.Show("Cập nhật thông tin khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -290,6 +417,7 @@ namespace PM_Ban_Do_An_Nhanh
             txtSDT.Text = "";
             btnLuu.Text = "Lưu";
             txtSDT.Enabled = true;
+            editingSdtOld = null;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -307,8 +435,35 @@ namespace PM_Ban_Do_An_Nhanh
                 // Use designer-defined columns (MaKH/TenKH/SDT/DiaChi)
                 dgvKhachHang.AutoGenerateColumns = false;
 
-                var dt = khachHangBLL?.HienThiDanhSachKhachHang();
+                string mode = GetStatusMode();
+                var dt = khachHangBLL?.HienThiDanhSachKhachHangTomTatTheoTrangThai(mode);
                 allCustomersDt = dt ?? new DataTable();
+
+                try
+                {
+                    if (!allCustomersDt.Columns.Contains("Rank"))
+                        allCustomersDt.Columns.Add("Rank", typeof(string));
+
+                    if (allCustomersDt.Columns.Contains("TongChiTieu"))
+                    {
+                        foreach (DataRow r in allCustomersDt.Rows)
+                        {
+                            decimal tong = 0m;
+                            try
+                            {
+                                if (r["TongChiTieu"] != DBNull.Value)
+                                    decimal.TryParse(r["TongChiTieu"].ToString(), out tong);
+                            }
+                            catch { tong = 0m; }
+
+                            r["Rank"] = khachHangBLL.TinhRank(tong);
+                        }
+                    }
+                }
+                catch
+                {
+                }
+
                 dgvKhachHang.DataSource = allCustomersDt;
 
                 dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -340,6 +495,13 @@ namespace PM_Ban_Do_An_Nhanh
                     colSdt.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
 
+                var colRank = dgvKhachHang.Columns["Rank"];
+                if (colRank != null)
+                {
+                    colRank.HeaderText = "Hạng";
+                    colRank.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+
                 ApplyFilter();
             }
             catch (Exception ex)
@@ -365,7 +527,14 @@ namespace PM_Ban_Do_An_Nhanh
                         txtTenKH.Text = khachHang.TenKH;
                         txtSDT.Text = khachHang.SDT;
                         btnLuu.Text = "Cập nhật";
-                        txtSDT.Enabled = false;
+                        txtSDT.Enabled = true;
+                        editingSdtOld = khachHang.SDT;
+                        try
+                        {
+                            bool isInactive = string.Equals(khachHang.TrangThai ?? "", "Inactive", StringComparison.OrdinalIgnoreCase);
+                            btnXoa.Text = isInactive ? "Kích hoạt lại" : "Ngưng hoạt động";
+                        }
+                        catch { }
                         suppressFilter = false;
                     }
                     else
@@ -404,28 +573,41 @@ namespace PM_Ban_Do_An_Nhanh
             string sdt = dgvKhachHang.CurrentRow.Cells["SDT"].Value.ToString();
             string tenKH = dgvKhachHang.CurrentRow.Cells["TenKH"].Value.ToString();
 
-            if (MessageBox.Show($"Bạn có chắc chắn muốn xóa khách hàng {tenKH} (SĐT: {sdt})?", "Xác nhận xóa",
+            string currentTrangThai = "Active";
+            try
+            {
+                var kh = khachHangBLL.LayThongTinKhachHangBySDT(sdt);
+                if (kh != null && !string.IsNullOrWhiteSpace(kh.TrangThai))
+                    currentTrangThai = kh.TrangThai;
+            }
+            catch { }
+
+            bool isInactive = string.Equals(currentTrangThai, "Inactive", StringComparison.OrdinalIgnoreCase);
+            string target = isInactive ? "Active" : "Inactive";
+            string actionText = isInactive ? "kích hoạt lại" : "ngưng hoạt động";
+
+            if (MessageBox.Show($"Bạn có chắc chắn muốn {actionText} khách hàng {tenKH} (SĐT: {sdt})?", "Xác nhận",
                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    bool success = khachHangBLL.XoaKhachHang(sdt);
+                    bool success = khachHangBLL.CapNhatTrangThaiKhachHang(sdt, target);
 
                     if (success)
                     {
-                        MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật trạng thái khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadKhachHangToGridView();
                         ResetForm();
                     }
                     else
                     {
-                        MessageBox.Show("Xóa khách hàng thất bại. Khách hàng này có thể đang được sử dụng trong đơn hàng.",
+                        MessageBox.Show("Không thể cập nhật trạng thái. Vui lòng kiểm tra cột TrangThai trong bảng KhachHang.",
                                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi xóa khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi khi cập nhật trạng thái khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

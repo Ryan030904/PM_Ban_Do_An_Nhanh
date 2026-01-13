@@ -22,6 +22,7 @@ namespace PM_Ban_Do_An_Nhanh
         private MonAnBLL monAnBLL = new MonAnBLL();
         private DonHangBLL donHangBLL = new DonHangBLL();
         private KhachHangBLL khachHangBLL = new KhachHangBLL();
+        private DanhMucBLL danhMucBLL = new DanhMucBLL();
 
         private TabPage tabCart;
         private Panel cartPanel;
@@ -43,6 +44,27 @@ namespace PM_Ban_Do_An_Nhanh
 
         private bool isEnsuringEqualMainTabs = false;
         private bool isEnsureEqualMainTabsScheduled = false;
+
+
+        private ComboBox cboPaymentMethod;
+
+        private string currentMenuSearch = "";
+
+        private ComboBox cboMenuType;
+        private string currentMenuType = "Tất cả";
+
+
+        private DataTable hoaDonTableRaw;
+        private string currentHoaDonSearch = "";
+        private TextBox txtHistorySearch;
+        private Button btnDeleteHoaDon;
+        private ComboBox cboHistoryRange;
+        private string currentHoaDonRange = "All";
+
+        private const string HoaDonRealIdColumn = "MaDH_Real";
+
+        private TextBox txtCartCustomerTen;
+        private TextBox txtCartCustomerSdt;
 
 
         private bool customerLayoutInitialized = false;
@@ -120,10 +142,11 @@ namespace PM_Ban_Do_An_Nhanh
             // Gold: > 2m (8%)
             // Platinum: > 5m (12%)
             // Diamond: > 8m (15%)
-            if (tongChiTieu > 8000000m) return ("Kim Cương", 0.15m);
-            if (tongChiTieu > 5000000m) return ("Bạch Kim", 0.12m);
-            if (tongChiTieu > 2000000m) return ("Vàng", 0.08m);
-            if (tongChiTieu > 500000m) return ("Bạc", 0.05m);
+            if (tongChiTieu >= 12000000m) return ("VIP", 0.20m);
+            if (tongChiTieu >= 8000000m) return ("Kim Cương", 0.15m);
+            if (tongChiTieu >= 5000000m) return ("Bạch Kim", 0.12m);
+            if (tongChiTieu >= 2000000m) return ("Vàng", 0.08m);
+            if (tongChiTieu >= 500000m) return ("Bạc", 0.05m);
             return ("Thành Viên", 0.02m);
         }
         private DateTime lastPaymentTime = DateTime.MinValue;
@@ -199,6 +222,13 @@ namespace PM_Ban_Do_An_Nhanh
             EnsureCartTab();
             EnsureCartPanel();
 
+            try
+            {
+                if (mainTabControl != null && tabCustomer != null && mainTabControl.TabPages.Contains(tabCustomer))
+                    mainTabControl.TabPages.Remove(tabCustomer);
+            }
+            catch { }
+
             EnsureEqualMainTabs();
 
             if (pnlMonAn != null)
@@ -208,8 +238,216 @@ namespace PM_Ban_Do_An_Nhanh
             }
 
             EnsureOrderTabLayout();
-            EnsureCustomerTabLayout();
             EnsureHistoryTabLayout();
+        }
+
+        private static string NormalizeForSearch(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "";
+            try
+            {
+                string s = input.Trim().ToLowerInvariant().Normalize(NormalizationForm.FormD);
+                var sb = new StringBuilder(s.Length);
+                foreach (char c in s)
+                {
+                    var uc = CharUnicodeInfo.GetUnicodeCategory(c);
+                    if (uc != UnicodeCategory.NonSpacingMark)
+                        sb.Append(c);
+                }
+                return sb.ToString().Normalize(NormalizationForm.FormC);
+            }
+            catch
+            {
+                return input.Trim().ToLowerInvariant();
+            }
+        }
+
+        private static bool IsDrinkItem(string nameOrCategory)
+        {
+            string s = NormalizeForSearch(nameOrCategory);
+            if (string.IsNullOrWhiteSpace(s)) return false;
+
+            // Heuristic keywords for beverage categories/items
+            return s.Contains("nuoc") || s.Contains("uongs") || s.Contains("uong") || s.Contains("giai khat") ||
+                   s.Contains("drink") || s.Contains("beverage") ||
+                   s.Contains("coca") || s.Contains("pepsi") || s.Contains("sprite") || s.Contains("tra") ||
+                   s.Contains("soda") || s.Contains("nuoc ngot");
+        }
+
+        private void EnsureMenuTypeComboItems(DataTable monAnTable = null)
+        {
+            if (cboMenuType == null) return;
+
+            var items = new List<string>();
+            items.Add("Tất cả");
+
+            try
+            {
+                DataTable dm = danhMucBLL.LayDanhSachDanhMuc();
+                if (dm != null && dm.Columns.Contains("TenDM"))
+                {
+                    foreach (DataRow r in dm.Rows)
+                    {
+                        string name = r["TenDM"]?.ToString();
+                        if (string.IsNullOrWhiteSpace(name)) continue;
+                        items.Add(name.Trim());
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            if (items.Count <= 1)
+            {
+                try
+                {
+                    if (monAnTable != null && monAnTable.Columns.Contains("TenDM"))
+                    {
+                        foreach (var name in monAnTable.AsEnumerable()
+                                     .Select(r => r["TenDM"] == DBNull.Value ? "" : (r["TenDM"]?.ToString() ?? ""))
+                                     .Where(s => !string.IsNullOrWhiteSpace(s))
+                                     .Select(s => s.Trim())
+                                     .Distinct(StringComparer.OrdinalIgnoreCase))
+                        {
+                            items.Add(name);
+                        }
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            try
+            {
+                cboMenuType.BeginUpdate();
+                cboMenuType.Items.Clear();
+                cboMenuType.Items.AddRange(items.Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
+            }
+            finally
+            {
+                try { cboMenuType.EndUpdate(); } catch { }
+            }
+
+            try
+            {
+                string desired = currentMenuType;
+                if (string.Equals(desired, "Đồ ăn", StringComparison.OrdinalIgnoreCase)) desired = "Tất cả";
+                if (string.Equals(desired, "Nước uống", StringComparison.OrdinalIgnoreCase)) desired = "Đồ uống";
+
+                if (cboMenuType.Items.Cast<object>().Any(x => string.Equals(x?.ToString(), desired, StringComparison.OrdinalIgnoreCase)))
+                    cboMenuType.SelectedItem = desired;
+                else
+                    cboMenuType.SelectedItem = "Tất cả";
+            }
+            catch
+            {
+                try { cboMenuType.SelectedItem = "Tất cả"; } catch { }
+            }
+        }
+
+        private string GetSelectedMenuType()
+        {
+            try
+            {
+                if (cboMenuType == null) return "Tất cả";
+                string v = cboMenuType.SelectedItem?.ToString();
+                if (string.IsNullOrWhiteSpace(v)) return "Tất cả";
+                return v.Trim();
+            }
+            catch
+            {
+                return "Tất cả";
+            }
+        }
+
+        private void ApplyMenuFilters(string keyword, string menuType)
+        {
+            if (pnlMonAn == null) return;
+
+            currentMenuSearch = keyword ?? "";
+            currentMenuType = string.IsNullOrWhiteSpace(menuType) ? "Tất cả" : menuType;
+
+            string needle = NormalizeForSearch(currentMenuSearch);
+            string type = currentMenuType;
+            if (string.Equals(type, "Nước uống", StringComparison.OrdinalIgnoreCase)) type = "Đồ uống";
+            if (string.Equals(type, "Đồ ăn", StringComparison.OrdinalIgnoreCase)) type = "Tất cả";
+            string typeNeedle = NormalizeForSearch(type);
+
+            bool anyCard = false;
+            int visibleCards = 0;
+
+            foreach (Control c in pnlMonAn.Controls)
+            {
+                if (c is MenuItemCard card)
+                {
+                    anyCard = true;
+
+                    string hay = NormalizeForSearch(card.TenMon ?? "");
+                    bool okName = string.IsNullOrWhiteSpace(needle) || hay.Contains(needle);
+
+                    string category = card.Tag?.ToString() ?? "";
+                    bool okType = true;
+                    if (!string.IsNullOrWhiteSpace(typeNeedle) && !string.Equals(typeNeedle, NormalizeForSearch("Tất cả"), StringComparison.OrdinalIgnoreCase))
+                    {
+                        string catNeedle = NormalizeForSearch(category);
+                        okType = string.Equals(catNeedle, typeNeedle, StringComparison.OrdinalIgnoreCase);
+                    }
+
+                    bool ok = okName && okType;
+                    card.Visible = ok;
+                    if (ok) visibleCards++;
+                }
+                else
+                {
+                    // keep only labels (e.g. placeholder) when no filter is applied
+                    c.Visible = string.IsNullOrWhiteSpace(needle) && string.Equals(type, "Tất cả", StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            if (anyCard && (!string.IsNullOrWhiteSpace(needle) || !string.Equals(type, "Tất cả", StringComparison.OrdinalIgnoreCase)) && visibleCards == 0)
+            {
+                if (!pnlMonAn.Controls.OfType<Label>().Any(l => string.Equals(l.Name, "lblNoSearchResults", StringComparison.OrdinalIgnoreCase)))
+                {
+                    var lbl = new Label
+                    {
+                        Name = "lblNoSearchResults",
+                        Text = "Không tìm thấy món phù hợp",
+                        AutoSize = true,
+                        ForeColor = Color.Gray,
+                        Margin = new Padding(6)
+                    };
+                    pnlMonAn.Controls.Add(lbl);
+                }
+            }
+            else
+            {
+                var toRemove = pnlMonAn.Controls.OfType<Label>()
+                    .Where(l => string.Equals(l.Name, "lblNoSearchResults", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                foreach (var l in toRemove) pnlMonAn.Controls.Remove(l);
+            }
+
+            try { pnlMonAn.PerformLayout(); } catch { }
+        }
+
+        private void TxtSearchMenu_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ApplyMenuFilters(txtSearchMenu?.Text, GetSelectedMenuType());
+            }
+            catch { }
+        }
+
+        private void CboMenuType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ApplyMenuFilters(txtSearchMenu?.Text, GetSelectedMenuType());
+            }
+            catch { }
         }
 
         private void EnsureEqualMainTabs()
@@ -294,8 +532,8 @@ namespace PM_Ban_Do_An_Nhanh
             var bottom = new Panel
             {
                 Dock = DockStyle.Bottom,
-                Height = 120,
-                Padding = new Padding(12)
+                Height = 180,
+                Padding = new Padding(8)
             };
 
             var grid = new TableLayoutPanel
@@ -304,8 +542,8 @@ namespace PM_Ban_Do_An_Nhanh
                 ColumnCount = 2,
                 RowCount = 1
             };
-            grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
-            grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            grid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
             var info = new FlowLayoutPanel
@@ -316,19 +554,96 @@ namespace PM_Ban_Do_An_Nhanh
             };
             lblTenKhachHang.AutoSize = true;
             lblTongTien.AutoSize = true;
-            info.Controls.Add(lblTenKhachHang);
+            lblTenKhachHang.Visible = false;
             info.Controls.Add(lblTongTien);
+
+            var payRow = new FlowLayoutPanel
+            {
+                AutoSize = true,
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                Margin = new Padding(0, 4, 0, 0)
+            };
+
+            var lblPay = new Label
+            {
+                Text = "Thanh toán:",
+                AutoSize = true,
+                Margin = new Padding(0, 6, 6, 0)
+            };
+
+            cboPaymentMethod = new NoScrollComboBox
+            {
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Width = 180
+            };
+            cboPaymentMethod.Items.AddRange(new object[] { "Tiền mặt", "Mã QR" });
+            cboPaymentMethod.SelectedIndex = 0;
+
+            payRow.Controls.Add(lblPay);
+            payRow.Controls.Add(cboPaymentMethod);
+            info.Controls.Add(payRow);
+
+            var customerInput = new TableLayoutPanel
+            {
+                AutoSize = true,
+                ColumnCount = 2,
+                RowCount = 2,
+                Margin = new Padding(0, 6, 0, 0)
+            };
+            customerInput.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            customerInput.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+
+            var lblTen = new Label
+            {
+                Text = "Tên khách:",
+                AutoSize = true,
+                Margin = new Padding(0, 6, 8, 0)
+            };
+            txtCartCustomerTen = new TextBox
+            {
+                Width = 220
+            };
+            txtCartCustomerTen.Leave += (s, e) =>
+            {
+                try
+                {
+                    string raw = txtCartCustomerTen.Text;
+                    string normalized = khachHangBLL.ChuanHoaTenKhachHang(raw);
+                    if (!string.Equals(raw ?? "", normalized ?? "", StringComparison.Ordinal))
+                        txtCartCustomerTen.Text = normalized;
+                }
+                catch { }
+            };
+
+            var lblSdt = new Label
+            {
+                Text = "SĐT :",
+                AutoSize = true,
+                Margin = new Padding(0, 6, 8, 0)
+            };
+            txtCartCustomerSdt = new TextBox
+            {
+                Width = 220
+            };
+
+            customerInput.Controls.Add(lblTen, 0, 0);
+            customerInput.Controls.Add(txtCartCustomerTen, 1, 0);
+            customerInput.Controls.Add(lblSdt, 0, 1);
+            customerInput.Controls.Add(txtCartCustomerSdt, 1, 1);
+            info.Controls.Add(customerInput);
 
             var actions = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.RightToLeft,
                 WrapContents = false,
-                AutoScroll = true
+                AutoScroll = false,
+                AutoSize = true,
+                Margin = new Padding(0)
             };
             actions.Controls.Add(btnThanhToan);
             actions.Controls.Add(btnHuyDon);
-            actions.Controls.Add(btnRemoveItem);
             actions.Controls.Add(btnEditOrder);
             actions.Controls.Add(btnMinusItem);
             actions.Controls.Add(btnPlusItem);
@@ -339,9 +654,235 @@ namespace PM_Ban_Do_An_Nhanh
             cartPanel.Controls.Add(bottom);
         }
 
+        private string GetSelectedPaymentMethod()
+        {
+            try
+            {
+                if (cboPaymentMethod == null) return "Tiền mặt";
+                string v = cboPaymentMethod.SelectedItem?.ToString();
+                if (string.IsNullOrWhiteSpace(v)) return "Tiền mặt";
+                return v.Trim();
+            }
+            catch
+            {
+                return "Tiền mặt";
+            }
+        }
+
+        private System.Drawing.Image TryLoadQrImage()
+        {
+            try
+            {
+                string[] fileNames = new[]
+                {
+                    "qr.png",
+                    "qr.jpg",
+                    "qr.jpeg",
+                    "qrcode.png",
+                    "qrcode.jpg",
+                    "default.jpg"
+                };
+
+                var roots = new List<string>();
+                void AddRoot(string p)
+                {
+                    if (string.IsNullOrWhiteSpace(p)) return;
+                    try
+                    {
+                        string full = Path.GetFullPath(p);
+                        if (!roots.Contains(full, StringComparer.OrdinalIgnoreCase))
+                            roots.Add(full);
+                    }
+                    catch { }
+                }
+
+                AddRoot(AppDomain.CurrentDomain.BaseDirectory);
+                AddRoot(Application.StartupPath);
+                try
+                {
+                    AddRoot(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+                }
+                catch { }
+
+                // Probe parent folders to support running from bin\\Debug/Release
+                try
+                {
+                    string cur = AppDomain.CurrentDomain.BaseDirectory;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var parent = Directory.GetParent(cur);
+                        if (parent == null) break;
+                        cur = parent.FullName;
+                        AddRoot(cur);
+                    }
+                }
+                catch { }
+
+                foreach (var root in roots)
+                {
+                    foreach (var sub in new[] { "", "Images" })
+                    {
+                        foreach (var name in fileNames)
+                        {
+                            string p = string.IsNullOrEmpty(sub) ? Path.Combine(root, name) : Path.Combine(root, sub, name);
+                            if (!File.Exists(p)) continue;
+                            using (var src = System.Drawing.Image.FromFile(p))
+                            {
+                                return new Bitmap(src);
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        private DialogResult ShowQrPaymentDialog(decimal amount)
+        {
+            using (var f = new Form())
+            {
+                f.Text = "Thanh toán mã QR";
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.FormBorderStyle = FormBorderStyle.FixedDialog;
+                f.MaximizeBox = false;
+                f.MinimizeBox = false;
+                f.ClientSize = new Size(520, 640);
+                f.BackColor = Color.White;
+                f.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular);
+
+                var layout = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 1,
+                    RowCount = 4,
+                    Padding = new Padding(18)
+                };
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+                var lblAmount = new Label
+                {
+                    Dock = DockStyle.Top,
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold),
+                    ForeColor = Color.FromArgb(33, 37, 41),
+                    Text = "Số tiền: " + TableStyleHelper.FormatVnd(amount),
+                    Margin = new Padding(0, 0, 0, 6)
+                };
+
+                var lblHint = new Label
+                {
+                    Dock = DockStyle.Top,
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                    ForeColor = Color.FromArgb(73, 80, 87),
+                    Text = "Vui lòng quét mã để thanh toán",
+                    Margin = new Padding(0, 0, 0, 12)
+                };
+
+                var qrHost = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.White,
+                    Padding = new Padding(18),
+                    BorderStyle = BorderStyle.FixedSingle
+                };
+
+                var pb = new PictureBox
+                {
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    BackColor = Color.White,
+                    Margin = new Padding(0)
+                };
+
+                var img = TryLoadQrImage();
+                pb.Image = img;
+
+                qrHost.Controls.Add(pb);
+
+                var btnRow = new FlowLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WrapContents = false,
+                    AutoSize = true,
+                    Padding = new Padding(0, 14, 0, 0)
+                };
+
+                var btnOk = new Button
+                {
+                    Text = "Đã thanh toán",
+                    AutoSize = false,
+                    Size = new Size(140, 40),
+                    BackColor = Color.FromArgb(0, 123, 255),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold)
+                };
+                btnOk.FlatAppearance.BorderSize = 0;
+                btnOk.Click += (s, e) => { f.DialogResult = DialogResult.OK; f.Close(); };
+
+                var btnCancel = new Button
+                {
+                    Text = "Hủy",
+                    AutoSize = false,
+                    Size = new Size(110, 40),
+                    BackColor = Color.FromArgb(108, 117, 125),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold)
+                };
+                btnCancel.FlatAppearance.BorderSize = 0;
+                btnCancel.Click += (s, e) => { f.DialogResult = DialogResult.Cancel; f.Close(); };
+
+                btnRow.Controls.Add(btnOk);
+                btnRow.Controls.Add(btnCancel);
+
+                layout.Controls.Add(lblAmount, 0, 0);
+                layout.Controls.Add(lblHint, 0, 1);
+                layout.Controls.Add(qrHost, 0, 2);
+                layout.Controls.Add(btnRow, 0, 3);
+                f.Controls.Add(layout);
+
+                f.AcceptButton = btnOk;
+                f.CancelButton = btnCancel;
+
+                f.FormClosed += (s, e) =>
+                {
+                    try
+                    {
+                        if (pb.Image != null)
+                        {
+                            var old = pb.Image;
+                            pb.Image = null;
+                            old.Dispose();
+                        }
+                    }
+                    catch { }
+                };
+
+                return f.ShowDialog(this);
+            }
+        }
+
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             MoveCartPanelToSelectedTab();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(currentMenuSearch))
+                    txtSearchMenu.Text = currentMenuSearch;
+
+                if (cboMenuType != null)
+                    cboMenuType.SelectedItem = currentMenuType;
+            }
+            catch { }
         }
 
         private void MoveCartPanelToSelectedTab()
@@ -391,6 +932,8 @@ namespace PM_Ban_Do_An_Nhanh
             btnRemoveItem.Text = "Xóa";
             btnThanhToan.Text = "Thanh toán";
 
+            btnRemoveItem.Visible = false;
+
             btnRemoveItem.BackColor = Color.FromArgb(220, 53, 69);
             btnRemoveItem.ForeColor = Color.White;
             btnRemoveItem.FlatStyle = FlatStyle.Flat;
@@ -400,6 +943,11 @@ namespace PM_Ban_Do_An_Nhanh
             btnHuyDon.ForeColor = Color.Black;
             btnHuyDon.FlatStyle = FlatStyle.Flat;
             btnHuyDon.FlatAppearance.BorderSize = 0;
+
+            btnEditOrder.BackColor = Color.FromArgb(108, 117, 125);
+            btnEditOrder.ForeColor = Color.White;
+            btnEditOrder.FlatStyle = FlatStyle.Flat;
+            btnEditOrder.FlatAppearance.BorderSize = 0;
 
             btnThanhToan.BackColor = Color.FromArgb(0, 123, 255);
             btnThanhToan.ForeColor = Color.White;
@@ -412,6 +960,18 @@ namespace PM_Ban_Do_An_Nhanh
             btnRemoveItem.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnThanhToan.AutoSize = true;
             btnThanhToan.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+            btnEditOrder.AutoSize = true;
+            btnEditOrder.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+            // Keep the action row stable when switching Sửa <-> Xác nhận (avoid clipping/overlap)
+            btnEditOrder.AutoSize = false;
+            btnHuyDon.AutoSize = false;
+            btnThanhToan.AutoSize = false;
+
+            btnEditOrder.Size = new Size(100, 34);
+            btnHuyDon.Size = new Size(90, 34);
+            btnThanhToan.Size = new Size(100, 34);
 
             btnPlusItem.Width = 42;
             btnMinusItem.Width = 42;
@@ -594,8 +1154,8 @@ namespace PM_Ban_Do_An_Nhanh
             if (orderSplit == null) return;
 
             // Keep the right panel (cart/order list) visible by enforcing a minimum width
-            const int preferredMinRight = 580;
-            const int preferredRight = 700;
+            const int preferredMinRight = 520;
+            const int preferredRight = 620;
             const int preferredMinLeft = 420;
 
             const int absoluteMinLeft = 200;
@@ -666,8 +1226,62 @@ namespace PM_Ban_Do_An_Nhanh
             };
 
             var left = new Panel { Dock = DockStyle.Fill };
+
+            var searchBar = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                Height = 44,
+                ColumnCount = 4,
+                RowCount = 1,
+                Padding = new Padding(8, 8, 8, 8)
+            };
+            searchBar.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            searchBar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            searchBar.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            searchBar.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 160F));
+            searchBar.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+            var lblSearch = new Label
+            {
+                Text = "Tìm món:",
+                AutoSize = true,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Margin = new Padding(0, 6, 8, 0)
+            };
+
+            txtSearchMenu.Dock = DockStyle.Fill;
+            txtSearchMenu.Margin = new Padding(0, 2, 0, 0);
+            txtSearchMenu.TextChanged -= TxtSearchMenu_TextChanged;
+            txtSearchMenu.TextChanged += TxtSearchMenu_TextChanged;
+
+            var lblType = new Label
+            {
+                Text = "Loại:",
+                AutoSize = true,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Margin = new Padding(12, 6, 8, 0)
+            };
+
+            cboMenuType = new NoScrollComboBox
+            {
+                Dock = DockStyle.Fill,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new System.Drawing.Font("Arial", 10F)
+            };
+            cboMenuType.SelectedIndexChanged -= CboMenuType_SelectedIndexChanged;
+            cboMenuType.SelectedIndexChanged += CboMenuType_SelectedIndexChanged;
+            EnsureMenuTypeComboItems();
+
+            searchBar.Controls.Add(lblSearch, 0, 0);
+            searchBar.Controls.Add(txtSearchMenu, 1, 0);
+            searchBar.Controls.Add(lblType, 2, 0);
+            searchBar.Controls.Add(cboMenuType, 3, 0);
+
             pnlMonAn.Dock = DockStyle.Fill;
             left.Controls.Add(pnlMonAn);
+            left.Controls.Add(searchBar);
             split.Panel1.Controls.Add(left);
 
             EnsureCartPanel();
@@ -967,14 +1581,50 @@ namespace PM_Ban_Do_An_Nhanh
         private void EnsureHistoryTabLayout()
         {
             if (tabHistory == null || dgvHoaDon == null) return;
-            if (tabHistory.Controls.Contains(btnPrint) || tabHistory.Controls.Contains(btnExportPdf))
+
+            try
             {
-                if (!tabHistory.Controls.Contains(dgvHoaDon))
+                bool already = tabHistory.Controls.OfType<FlowLayoutPanel>().Any() && tabHistory.Controls.Contains(dgvHoaDon);
+                if (already) return;
+            }
+            catch { }
+
+            if (txtHistorySearch == null)
+            {
+                txtHistorySearch = new TextBox
                 {
-                    dgvHoaDon.Dock = DockStyle.Fill;
-                    tabHistory.Controls.Add(dgvHoaDon);
-                }
-                return;
+                    Width = 260,
+                    Font = new System.Drawing.Font("Arial", 10F)
+                };
+                txtHistorySearch.TextChanged += (s, e) => ApplyHoaDonFilters(txtHistorySearch.Text);
+            }
+
+            if (btnDeleteHoaDon == null)
+            {
+                btnDeleteHoaDon = new Button
+                {
+                    Text = "Xóa",
+                    AutoSize = true
+                };
+                btnDeleteHoaDon.Click += new EventHandler(btnDeleteHoaDon_Click);
+            }
+
+            if (cboHistoryRange == null)
+            {
+                cboHistoryRange = new NoScrollComboBox
+                {
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    Width = 170,
+                    Font = new System.Drawing.Font("Arial", 10F)
+                };
+                cboHistoryRange.Items.AddRange(new object[] { "Tất cả", "1 ngày qua", "1 tuần qua", "1 tháng qua", "1 năm qua" });
+                cboHistoryRange.SelectedIndex = 0;
+                currentHoaDonRange = "All";
+                cboHistoryRange.SelectedIndexChanged += (s, e) =>
+                {
+                    currentHoaDonRange = GetHoaDonRangeMode();
+                    ApplyHoaDonFilters(txtHistorySearch?.Text ?? currentHoaDonSearch);
+                };
             }
 
             tabHistory.Controls.Clear();
@@ -990,6 +1640,11 @@ namespace PM_Ban_Do_An_Nhanh
 
             top.Controls.Add(btnPrint);
             top.Controls.Add(btnExportPdf);
+            top.Controls.Add(new Label { Text = "Thời gian:", AutoSize = true, Margin = new Padding(16, 6, 6, 0) });
+            top.Controls.Add(cboHistoryRange);
+            top.Controls.Add(new Label { Text = "Tìm:", AutoSize = true, Margin = new Padding(16, 6, 6, 0) });
+            top.Controls.Add(txtHistorySearch);
+            top.Controls.Add(btnDeleteHoaDon);
 
             dgvHoaDon.Dock = DockStyle.Fill;
             dgvHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -997,6 +1652,41 @@ namespace PM_Ban_Do_An_Nhanh
 
             tabHistory.Controls.Add(dgvHoaDon);
             tabHistory.Controls.Add(top);
+        }
+
+        private string GetHoaDonRangeMode()
+        {
+            try
+            {
+                if (cboHistoryRange == null) return currentHoaDonRange;
+                string t = cboHistoryRange.SelectedItem?.ToString() ?? "";
+                if (string.Equals(t, "1 ngày qua", StringComparison.OrdinalIgnoreCase)) return "1d";
+                if (string.Equals(t, "1 tuần qua", StringComparison.OrdinalIgnoreCase)) return "1w";
+                if (string.Equals(t, "1 tháng qua", StringComparison.OrdinalIgnoreCase)) return "1m";
+                if (string.Equals(t, "1 năm qua", StringComparison.OrdinalIgnoreCase)) return "1y";
+                return "All";
+            }
+            catch
+            {
+                return currentHoaDonRange;
+            }
+        }
+
+        private DateTime? GetHoaDonRangeCutoff(string mode)
+        {
+            try
+            {
+                var now = DateTime.Now;
+                if (string.Equals(mode, "1d", StringComparison.OrdinalIgnoreCase)) return now.AddDays(-1);
+                if (string.Equals(mode, "1w", StringComparison.OrdinalIgnoreCase)) return now.AddDays(-7);
+                if (string.Equals(mode, "1m", StringComparison.OrdinalIgnoreCase)) return now.AddMonths(-1);
+                if (string.Equals(mode, "1y", StringComparison.OrdinalIgnoreCase)) return now.AddYears(-1);
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         // ================= LOAD =================
@@ -1020,6 +1710,13 @@ namespace PM_Ban_Do_An_Nhanh
         private void PnlMonAn_SizeChanged(object sender, EventArgs e)
         {
             AdjustMenuCardLayout();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(currentMenuSearch) || !string.Equals(currentMenuType, "Tất cả", StringComparison.OrdinalIgnoreCase))
+                    ApplyMenuFilters(currentMenuSearch, currentMenuType);
+            }
+            catch { }
         }
 
         private void AdjustMenuCardLayout()
@@ -1091,6 +1788,7 @@ namespace PM_Ban_Do_An_Nhanh
 
                                     MenuItemCard card = new MenuItemCard();
                                     card.SetData(0, friendlyName, price, Path.Combine("Images", "MenuItems", Path.GetFileName(file)));
+                                    card.Tag = IsDrinkItem(friendlyName) ? "Nước uống" : "Đồ ăn";
                                     card.AddClicked += (s, ev) => { AddItemToOrder(ev.MaMon, ev.TenMon, ev.Price, ev.Quantity); };
                                     pnlMonAn.Controls.Add(card);
                                 }
@@ -1109,6 +1807,8 @@ namespace PM_Ban_Do_An_Nhanh
                     pnlMonAn.Controls.Add(lbl);
                     return;
                 }
+
+                try { EnsureMenuTypeComboItems(dt); } catch { }
 
                 foreach (DataRow r in dt.Rows)
                 {
@@ -1131,6 +1831,13 @@ namespace PM_Ban_Do_An_Nhanh
                             r.Table.Columns.Contains("HinhAnh") ? r["HinhAnh"]?.ToString() : null
                         );
 
+                        try
+                        {
+                            if (r.Table.Columns.Contains("TenDM"))
+                                card.Tag = r["TenDM"]?.ToString() ?? "";
+                        }
+                        catch { }
+
                         card.AddClicked += (s, ev) =>
                         {
                             AddItemToOrder(ev.MaMon, ev.TenMon, ev.Price, ev.Quantity);
@@ -1152,6 +1859,13 @@ namespace PM_Ban_Do_An_Nhanh
             }
 
             AdjustMenuCardLayout();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(currentMenuSearch) || !string.Equals(currentMenuType, "Tất cả", StringComparison.OrdinalIgnoreCase))
+                    ApplyMenuFilters(currentMenuSearch, currentMenuType);
+            }
+            catch { }
         }
 
         // ================= ORDER =================
@@ -1190,6 +1904,39 @@ namespace PM_Ban_Do_An_Nhanh
             dgvOrderList.Columns.Add("SoLuong", "SL");
             dgvOrderList.Columns.Add("DonGia", "Đơn giá");
             dgvOrderList.Columns.Add("ThanhTien", "Thành tiền");
+
+            try
+            {
+                if (dgvOrderList.Columns.Contains("TenMon"))
+                {
+                    dgvOrderList.Columns["TenMon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvOrderList.Columns["TenMon"].FillWeight = 58F;
+                    dgvOrderList.Columns["TenMon"].MinimumWidth = 260;
+                }
+
+                if (dgvOrderList.Columns.Contains("SoLuong"))
+                {
+                    dgvOrderList.Columns["SoLuong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvOrderList.Columns["SoLuong"].FillWeight = 10F;
+                    dgvOrderList.Columns["SoLuong"].MinimumWidth = 60;
+                    dgvOrderList.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+
+                if (dgvOrderList.Columns.Contains("DonGia"))
+                {
+                    dgvOrderList.Columns["DonGia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvOrderList.Columns["DonGia"].FillWeight = 16F;
+                    dgvOrderList.Columns["DonGia"].MinimumWidth = 110;
+                }
+
+                if (dgvOrderList.Columns.Contains("ThanhTien"))
+                {
+                    dgvOrderList.Columns["ThanhTien"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvOrderList.Columns["ThanhTien"].FillWeight = 16F;
+                    dgvOrderList.Columns["ThanhTien"].MinimumWidth = 120;
+                }
+            }
+            catch { }
 
             if (dgvOrderList.Columns.Contains("DonGia"))
                 dgvOrderList.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1283,6 +2030,12 @@ namespace PM_Ban_Do_An_Nhanh
             selectedCustomer = null;
             lblTenKhachHang.Text = "Loại khách: Khách lẻ";
             selectedCustomerTongChiTieu = 0m;
+            try
+            {
+                if (txtCartCustomerTen != null) txtCartCustomerTen.Text = "";
+                if (txtCartCustomerSdt != null) txtCartCustomerSdt.Text = "";
+            }
+            catch { }
             ExitEditOrderMode();
         }
 
@@ -1349,6 +2102,157 @@ namespace PM_Ban_Do_An_Nhanh
 
                 decimal tongTienGoc = currentOrderItems.Sum(x => x.SoLuong * x.DonGia);
 
+                try
+                {
+                    string tenNhap = txtCartCustomerTen?.Text?.Trim() ?? "";
+                    string sdtNhap = txtCartCustomerSdt?.Text?.Trim() ?? "";
+
+                    try { tenNhap = khachHangBLL.ChuanHoaTenKhachHang(tenNhap); } catch { }
+
+                    if (!string.IsNullOrWhiteSpace(sdtNhap))
+                    {
+                        KhachHang kh = null;
+                        try { kh = khachHangBLL.LayThongTinKhachHangBySDT(sdtNhap); } catch { }
+
+                        if (kh == null)
+                        {
+                            string tenToSave = string.IsNullOrWhiteSpace(tenNhap) ? "Khách" : tenNhap;
+                            try
+                            {
+                                khachHangBLL.ThemKhachHang(tenToSave, sdtNhap, "");
+                                kh = khachHangBLL.LayThongTinKhachHangBySDT(sdtNhap);
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                if (string.Equals(kh.TrangThai ?? "", "Inactive", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    khachHangBLL.CapNhatTrangThaiKhachHang(sdtNhap, "Active");
+                                    kh.TrangThai = "Active";
+                                }
+                            }
+                            catch { }
+
+                            if (!string.IsNullOrWhiteSpace(tenNhap) && !string.Equals(kh.TenKH ?? "", tenNhap, StringComparison.OrdinalIgnoreCase))
+                            {
+                                try
+                                {
+                                    khachHangBLL.CapNhatKhachHang(tenNhap, sdtNhap, kh.DiaChi ?? "");
+                                    kh.TenKH = tenNhap;
+                                }
+                                catch { }
+                            }
+                        }
+
+                        selectedCustomer = kh;
+                        selectedCustomerTongChiTieu = 0m;
+                        try
+                        {
+                            DataTable sum = khachHangBLL.HienThiDanhSachKhachHangTomTat();
+                            if (sum != null && sum.Columns.Contains("SDT") && sum.Columns.Contains("TongChiTieu"))
+                            {
+                                var r = sum.AsEnumerable().FirstOrDefault(x => string.Equals(x["SDT"]?.ToString() ?? "", sdtNhap, StringComparison.OrdinalIgnoreCase));
+                                if (r != null && r["TongChiTieu"] != DBNull.Value)
+                                    decimal.TryParse(r["TongChiTieu"].ToString(), out selectedCustomerTongChiTieu);
+                            }
+                        }
+                        catch { }
+
+                        if (selectedCustomer != null)
+                        {
+                            var rankInfo0 = GetRankByTotalSpent(selectedCustomerTongChiTieu);
+                            lblTenKhachHang.Text = $"Loại khách: {selectedCustomer.TenKH} - {rankInfo0.Rank} ({TableStyleHelper.FormatVnd(selectedCustomerTongChiTieu)})";
+                        }
+                    }
+                    else if (!string.IsNullOrWhiteSpace(tenNhap))
+                    {
+                        // Lookup by name when phone is not provided.
+                        try
+                        {
+                            var byName = khachHangBLL.TimKhachHangTheoTen(tenNhap, "All");
+                            if (byName != null)
+                            {
+                                // Prefer active customers if status exists
+                                DataRow[] activeRows = null;
+                                try
+                                {
+                                    if (byName.Columns.Contains("TrangThai"))
+                                        activeRows = byName.Select("TrangThai IS NULL OR TrangThai = 'Active'");
+                                }
+                                catch { activeRows = null; }
+
+                                var rows = (activeRows != null && activeRows.Length > 0) ? activeRows : byName.Select();
+
+                                if (rows != null && rows.Length == 1)
+                                {
+                                    var r = rows[0];
+                                    var kh = new KhachHang
+                                    {
+                                        MaKH = r["MaKH"] == DBNull.Value ? 0 : Convert.ToInt32(r["MaKH"]),
+                                        TenKH = r["TenKH"]?.ToString() ?? tenNhap,
+                                        SDT = r.Table.Columns.Contains("SDT") ? (r["SDT"]?.ToString() ?? "") : "",
+                                        DiaChi = r.Table.Columns.Contains("DiaChi") ? (r["DiaChi"]?.ToString() ?? "") : "",
+                                        TrangThai = r.Table.Columns.Contains("TrangThai") ? (r["TrangThai"]?.ToString()) : null
+                                    };
+
+                                    if (!string.IsNullOrWhiteSpace(kh.TrangThai)
+                                        && string.Equals(kh.TrangThai, "Inactive", StringComparison.OrdinalIgnoreCase)
+                                        && !string.IsNullOrWhiteSpace(kh.SDT))
+                                    {
+                                        try
+                                        {
+                                            khachHangBLL.CapNhatTrangThaiKhachHang(kh.SDT, "Active");
+                                            kh.TrangThai = "Active";
+                                        }
+                                        catch { }
+                                    }
+
+                                    selectedCustomer = kh;
+                                    selectedCustomerTongChiTieu = 0m;
+                                    try
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(kh.SDT))
+                                            selectedCustomerTongChiTieu = khachHangBLL.LayTongChiTieuBySDT(kh.SDT);
+                                    }
+                                    catch { }
+
+                                    var rankInfo0 = GetRankByTotalSpent(selectedCustomerTongChiTieu);
+                                    lblTenKhachHang.Text = $"Loại khách: {selectedCustomer.TenKH} - {rankInfo0.Rank} ({TableStyleHelper.FormatVnd(selectedCustomerTongChiTieu)})";
+                                }
+                                else if (rows != null && rows.Length > 1)
+                                {
+                                    selectedCustomer = null;
+                                    selectedCustomerTongChiTieu = 0m;
+                                    lblTenKhachHang.Text = "Loại khách: Khách lẻ";
+                                    MessageBox.Show("Tên khách hàng bị trùng. Vui lòng nhập SĐT để đối chiếu đúng khách.");
+                                }
+                                else
+                                {
+                                    selectedCustomer = null;
+                                    selectedCustomerTongChiTieu = 0m;
+                                    lblTenKhachHang.Text = "Loại khách: Khách lẻ";
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            selectedCustomer = null;
+                            selectedCustomerTongChiTieu = 0m;
+                            lblTenKhachHang.Text = "Loại khách: Khách lẻ";
+                        }
+                    }
+                    else
+                    {
+                        selectedCustomer = null;
+                        selectedCustomerTongChiTieu = 0m;
+                        lblTenKhachHang.Text = "Loại khách: Khách lẻ";
+                    }
+                }
+                catch { }
+
                 decimal tongChiTieuTruoc = selectedCustomer != null ? selectedCustomerTongChiTieu : 0m;
                 var rankInfo = GetRankByTotalSpent(tongChiTieuTruoc);
                 decimal discount = 0m;
@@ -1359,6 +2263,16 @@ namespace PM_Ban_Do_An_Nhanh
                 }
 
                 decimal tongTien = tongTienGoc - discount;
+
+                string paymentMethod = GetSelectedPaymentMethod();
+                if (string.Equals(paymentMethod, "Mã QR", StringComparison.OrdinalIgnoreCase))
+                {
+                    var qrResult = ShowQrPaymentDialog(tongTien);
+                    if (qrResult != DialogResult.OK)
+                    {
+                        return;
+                    }
+                }
 
                 DonHang dh = new DonHang
                 {
@@ -1400,7 +2314,6 @@ namespace PM_Ban_Do_An_Nhanh
                 InHoaDon(maDH);
                 ClearOrder();
                 LoadHoaDon();
-                LoadKhachHang();
 
                 try { _ = LoadMonAnAsync(); } catch { }
             }
@@ -1413,7 +2326,7 @@ namespace PM_Ban_Do_An_Nhanh
         // ================= KHÁCH HÀNG =================
         private void LoadKhachHang()
         {
-            dgvKhachHang.DataSource = khachHangBLL.HienThiDanhSachKhachHangTomTat();
+            dgvKhachHang.DataSource = khachHangBLL.HienThiDanhSachKhachHangTomTatTheoTrangThai("Active");
             dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvKhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
@@ -1463,7 +2376,8 @@ namespace PM_Ban_Do_An_Nhanh
             {
                 MaKH = Convert.ToInt32(r.Cells["MaKH"].Value),
                 TenKH = r.Cells["TenKH"].Value.ToString(),
-                SDT = r.Cells["SDT"].Value.ToString()
+                SDT = r.Cells["SDT"].Value.ToString(),
+                TrangThai = (dgvKhachHang.Columns.Contains("TrangThai") ? (r.Cells["TrangThai"].Value?.ToString() ?? "") : "")
             };
 
             selectedCustomerTongChiTieu = 0m;
@@ -1492,7 +2406,7 @@ namespace PM_Ban_Do_An_Nhanh
             try
             {
                 // LẤY TOÀN BỘ KHÁCH HÀNG
-                DataTable dt = khachHangBLL.HienThiDanhSachKhachHangTomTat();
+                DataTable dt = khachHangBLL.HienThiDanhSachKhachHangTomTatTheoTrangThai("Active");
 
                 // LỌC AN TOÀN (KHÔNG CRASH – KHÔNG NULL)
                 var result = dt.AsEnumerable()
@@ -1516,6 +2430,10 @@ namespace PM_Ban_Do_An_Nhanh
                 dgvKhachHang.DataSource = result.CopyToDataTable();
                 dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvKhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                dgvKhachHang.EnableHeadersVisualStyles = false;
+                dgvKhachHang.ColumnHeadersDefaultCellStyle.Padding = new Padding(8, 0, 8, 0);
+
                 if (dgvKhachHang.Columns.Contains("MaKH")) dgvKhachHang.Columns["MaKH"].Visible = false;
                 if (dgvKhachHang.Columns.Contains("TenKH")) dgvKhachHang.Columns["TenKH"].HeaderText = "Tên";
                 if (dgvKhachHang.Columns.Contains("SDT")) dgvKhachHang.Columns["SDT"].HeaderText = "SĐT";
@@ -1541,17 +2459,181 @@ namespace PM_Ban_Do_An_Nhanh
         // ================= HÓA ĐƠN =================
         private void LoadHoaDon()
         {
-            dgvHoaDon.DataSource = donHangBLL.LayDanhSachDonHang();
-            dgvHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            hoaDonTableRaw = donHangBLL.LayDanhSachDonHang();
+            ApplyHoaDonFilters(txtHistorySearch?.Text ?? currentHoaDonSearch);
+        }
 
-            // Ensure monetary columns display with VNĐ
-            TableStyleHelper.ApplyVndFormatting(dgvHoaDon, "TongTien");
+        private void ApplyHoaDonFilters(string keyword)
+        {
+            currentHoaDonSearch = keyword ?? "";
+            if (dgvHoaDon == null) return;
+
+            DataTable dt = hoaDonTableRaw;
+            if (dt == null)
+            {
+                dgvHoaDon.DataSource = null;
+                return;
+            }
+
+            string needle = NormalizeForSearch(currentHoaDonSearch);
+
+            currentHoaDonRange = GetHoaDonRangeMode();
+            DateTime? cutoff = GetHoaDonRangeCutoff(currentHoaDonRange);
+
+            IEnumerable<DataRow> rows = null;
+
+            if (string.IsNullOrWhiteSpace(needle))
+            {
+                try
+                {
+                    rows = dt.AsEnumerable()
+                        .Where(r =>
+                        {
+                            if (cutoff == null) return true;
+                            try
+                            {
+                                if (r.Table.Columns.Contains("NgayLap") && r["NgayLap"] != DBNull.Value)
+                                {
+                                    DateTime d = Convert.ToDateTime(r["NgayLap"]);
+                                    return d >= cutoff.Value;
+                                }
+                            }
+                            catch { }
+                            return true;
+                        })
+                        .OrderBy(r =>
+                        {
+                            try { return Convert.ToInt32(r["MaDH"]); } catch { return int.MaxValue; }
+                        });
+                }
+                catch { rows = null; }
+            }
+            else
+            {
+                try
+                {
+                    rows = dt.AsEnumerable()
+                        .Where(r =>
+                        {
+                            if (cutoff != null)
+                            {
+                                try
+                                {
+                                    if (r.Table.Columns.Contains("NgayLap") && r["NgayLap"] != DBNull.Value)
+                                    {
+                                        DateTime d = Convert.ToDateTime(r["NgayLap"]);
+                                        if (d < cutoff.Value) return false;
+                                    }
+                                }
+                                catch { }
+                            }
+
+                            string ten = (r.Table.Columns.Contains("TenKH") && !r.IsNull("TenKH")) ? (r["TenKH"]?.ToString() ?? "") : "";
+                            string sdt = (r.Table.Columns.Contains("SDT_KhachHang") && !r.IsNull("SDT_KhachHang")) ? (r["SDT_KhachHang"]?.ToString() ?? "") : "";
+                            return NormalizeForSearch(ten).Contains(needle) || NormalizeForSearch(sdt).Contains(needle);
+                        })
+                        .OrderBy(r =>
+                        {
+                            try { return Convert.ToInt32(r["MaDH"]); } catch { return int.MaxValue; }
+                        });
+                }
+                catch { rows = null; }
+            }
+
+            DataTable view = dt.Clone();
+            if (rows != null)
+            {
+                try
+                {
+                    if (rows.Any()) view = rows.CopyToDataTable();
+                }
+                catch { }
+            }
+
+            if (!view.Columns.Contains(HoaDonRealIdColumn))
+                view.Columns.Add(HoaDonRealIdColumn, typeof(int));
+
+            int i = 1;
+            foreach (DataRow r in view.Rows)
+            {
+                int real = 0;
+                try { real = Convert.ToInt32(r["MaDH"]); } catch { }
+                try { r[HoaDonRealIdColumn] = real; } catch { }
+                try { r["MaDH"] = i; } catch { }
+                i++;
+            }
+
+            dgvHoaDon.DataSource = view;
+            dgvHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                if (dgvHoaDon.Columns.Contains(HoaDonRealIdColumn))
+                    dgvHoaDon.Columns[HoaDonRealIdColumn].Visible = false;
+                if (dgvHoaDon.Columns.Contains("MaDH"))
+                    dgvHoaDon.Columns["MaDH"].HeaderText = "MaDH";
+            }
+            catch { }
+            try { TableStyleHelper.ApplyVndFormatting(dgvHoaDon, "TongTien"); } catch { }
+        }
+
+        private void btnDeleteHoaDon_Click(object sender, EventArgs e)
+        {
+            int? ma = selectedMaDH;
+            try
+            {
+                if (ma == null && dgvHoaDon != null && dgvHoaDon.CurrentRow != null)
+                {
+                    object v;
+                    if (dgvHoaDon.Columns.Contains(HoaDonRealIdColumn))
+                        v = dgvHoaDon.CurrentRow.Cells[HoaDonRealIdColumn].Value;
+                    else
+                        v = dgvHoaDon.CurrentRow.Cells["MaDH"].Value;
+                    if (v != null && v != DBNull.Value) ma = Convert.ToInt32(v);
+                }
+            }
+            catch { }
+
+            if (ma == null)
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                bool ok = donHangBLL.XoaDonHang(ma.Value);
+                if (!ok)
+                {
+                    MessageBox.Show("Xóa hóa đơn thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                selectedMaDH = null;
+                LoadHoaDon();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            selectedMaDH = Convert.ToInt32(dgvHoaDon.Rows[e.RowIndex].Cells["MaDH"].Value);
+            try
+            {
+                if (dgvHoaDon.Columns.Contains(HoaDonRealIdColumn))
+                    selectedMaDH = Convert.ToInt32(dgvHoaDon.Rows[e.RowIndex].Cells[HoaDonRealIdColumn].Value);
+                else
+                    selectedMaDH = Convert.ToInt32(dgvHoaDon.Rows[e.RowIndex].Cells["MaDH"].Value);
+            }
+            catch
+            {
+                selectedMaDH = null;
+            }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -1568,7 +2650,350 @@ namespace PM_Ban_Do_An_Nhanh
 
         private void InHoaDon(int maDH)
         {
-            MessageBox.Show("In hóa đơn mã: " + maDH);
+            ShowHoaDonDialog(maDH);
+        }
+
+        private void ShowHoaDonDialog(int maDH)
+        {
+            DataTable dt;
+            try
+            {
+                dt = donHangBLL.LayChiTietDonHangChoIn(maDH);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không lấy được dữ liệu hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DataRow first = dt.Rows[0];
+            DateTime ngayLap = DateTime.Now;
+            decimal tongTien = 0m;
+            string tenKhDb = "";
+            string sdtKhDb = "";
+            string trangThai = "";
+
+            try
+            {
+                if (first.Table.Columns.Contains("TenKH") && first["TenKH"] != DBNull.Value)
+                    tenKhDb = first["TenKH"]?.ToString() ?? "";
+            }
+            catch { }
+
+            try
+            {
+                if (first.Table.Columns.Contains("SDT_KhachHang") && first["SDT_KhachHang"] != DBNull.Value)
+                    sdtKhDb = first["SDT_KhachHang"]?.ToString() ?? "";
+            }
+            catch { }
+
+            try
+            {
+                if (first.Table.Columns.Contains("NgayLap") && first["NgayLap"] != DBNull.Value)
+                    ngayLap = Convert.ToDateTime(first["NgayLap"]);
+            }
+            catch { }
+
+            try
+            {
+                if (first.Table.Columns.Contains("TongTien") && first["TongTien"] != DBNull.Value)
+                    tongTien = Convert.ToDecimal(first["TongTien"]);
+            }
+            catch { }
+
+            try
+            {
+                if (first.Table.Columns.Contains("TrangThaiThanhToan"))
+                    trangThai = first["TrangThaiThanhToan"]?.ToString() ?? "";
+            }
+            catch { }
+
+            DataTable itemsTable = new DataTable();
+            itemsTable.Columns.Add("TenMon", typeof(string));
+            itemsTable.Columns.Add("SoLuong", typeof(int));
+            itemsTable.Columns.Add("DonGia", typeof(decimal));
+            itemsTable.Columns.Add("ThanhTien", typeof(decimal));
+
+            try
+            {
+                foreach (DataRow r in dt.Rows)
+                {
+                    string tenMon = r.Table.Columns.Contains("TenMon") ? (r["TenMon"]?.ToString() ?? "") : "";
+                    int soLuong = 0;
+                    decimal donGia = 0m;
+                    decimal thanhTien = 0m;
+
+                    try { if (r.Table.Columns.Contains("SoLuong") && r["SoLuong"] != DBNull.Value) soLuong = Convert.ToInt32(r["SoLuong"]); } catch { }
+                    try { if (r.Table.Columns.Contains("DonGia") && r["DonGia"] != DBNull.Value) donGia = Convert.ToDecimal(r["DonGia"]); } catch { }
+                    try { if (r.Table.Columns.Contains("ThanhTien") && r["ThanhTien"] != DBNull.Value) thanhTien = Convert.ToDecimal(r["ThanhTien"]); } catch { }
+
+                    itemsTable.Rows.Add(tenMon, soLuong, donGia, thanhTien);
+                }
+            }
+            catch { }
+
+            using (var f = new Form())
+            {
+                f.Text = "Hóa đơn";
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.FormBorderStyle = FormBorderStyle.FixedDialog;
+                f.MinimizeBox = false;
+                f.MaximizeBox = false;
+
+                int rowCount = 0;
+                try { rowCount = dt?.Rows?.Count ?? 0; } catch { }
+                int height = 320 + Math.Min(12, Math.Max(0, rowCount)) * 26;
+                height = Math.Min(720, Math.Max(520, height));
+                f.ClientSize = new Size(660, height);
+
+                f.BackColor = Color.FromArgb(245, 245, 245);
+
+                var paper = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.White,
+                    Padding = new Padding(18)
+                };
+
+                var root = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 1,
+                    RowCount = 4
+                };
+                root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                root.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+                root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+                bool hasCustomerInfo = !string.IsNullOrWhiteSpace(tenKhDb) || !string.IsNullOrWhiteSpace(sdtKhDb);
+
+                int headerRows = 4;
+                if (hasCustomerInfo) headerRows++;
+                if (!string.IsNullOrWhiteSpace(sdtKhDb)) headerRows++;
+
+                var header = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Top,
+                    ColumnCount = 1,
+                    RowCount = headerRows,
+                    AutoSize = true
+                };
+                header.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+
+                var lblTitle = new Label
+                {
+                    Text = "HÓA ĐƠN",
+                    AutoSize = false,
+                    Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Dock = DockStyle.Top,
+                    Height = 44
+                };
+
+                var lblMa = new Label
+                {
+                    Text = "Mã hóa đơn: " + maDH,
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                    Margin = new Padding(0, 2, 0, 2)
+                };
+
+                var lblNgay = new Label
+                {
+                    Text = "Ngày: " + ngayLap.ToString("dd/MM/yyyy HH:mm"),
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                    Margin = new Padding(0, 2, 0, 2)
+                };
+
+                var lblStatus = new Label
+                {
+                    Text = string.IsNullOrWhiteSpace(trangThai) ? "Trạng thái: -" : ("Trạng thái: " + trangThai),
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                    Margin = new Padding(0, 2, 0, 2)
+                };
+
+                int row = 0;
+                header.Controls.Add(lblTitle, 0, row++);
+                header.Controls.Add(lblMa, 0, row++);
+                header.Controls.Add(lblNgay, 0, row++);
+
+                if (hasCustomerInfo)
+                {
+                    string tenDisplay = string.IsNullOrWhiteSpace(tenKhDb) ? "Khách" : tenKhDb;
+                    var lblKhach = new Label
+                    {
+                        Text = "Khách: " + tenDisplay,
+                        AutoSize = true,
+                        Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                        Margin = new Padding(0, 2, 0, 2)
+                    };
+                    header.Controls.Add(lblKhach, 0, row++);
+
+                    if (!string.IsNullOrWhiteSpace(sdtKhDb))
+                    {
+                        var lblSdt = new Label
+                        {
+                            Text = "SĐT: " + sdtKhDb,
+                            AutoSize = true,
+                            Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular),
+                            Margin = new Padding(0, 2, 0, 2)
+                        };
+                        header.Controls.Add(lblSdt, 0, row++);
+                    }
+                }
+
+                header.Controls.Add(lblStatus, 0, row++);
+
+                var separatorTop = new Panel
+                {
+                    Dock = DockStyle.Top,
+                    Height = 1,
+                    BackColor = Color.FromArgb(230, 230, 230),
+                    Margin = new Padding(0, 10, 0, 10)
+                };
+
+                var dgv = new DataGridView
+                {
+                    Dock = DockStyle.Fill,
+                    ReadOnly = true,
+                    AllowUserToAddRows = false,
+                    AllowUserToDeleteRows = false,
+                    AllowUserToResizeRows = false,
+                    AllowUserToResizeColumns = false,
+                    RowHeadersVisible = false,
+                    AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                    SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+                    BackgroundColor = Color.White,
+                    BorderStyle = BorderStyle.None,
+                    CellBorderStyle = DataGridViewCellBorderStyle.None,
+                    ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None,
+                    EnableHeadersVisualStyles = false,
+                    GridColor = Color.White,
+                    MultiSelect = false
+                };
+                dgv.DataSource = itemsTable;
+
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+                dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dgv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+                dgv.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
+                dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 235, 235);
+                dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+                dgv.RowTemplate.Height = 28;
+                dgv.ColumnHeadersHeight = 34;
+                dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                if (dgv.Columns.Contains("TenMon")) dgv.Columns["TenMon"].HeaderText = "Tên món";
+                if (dgv.Columns.Contains("SoLuong")) dgv.Columns["SoLuong"].HeaderText = "SL";
+                if (dgv.Columns.Contains("DonGia")) dgv.Columns["DonGia"].HeaderText = "Đơn giá";
+                if (dgv.Columns.Contains("ThanhTien")) dgv.Columns["ThanhTien"].HeaderText = "Thành tiền";
+
+                if (dgv.Columns.Contains("SoLuong")) dgv.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (dgv.Columns.Contains("DonGia")) dgv.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                if (dgv.Columns.Contains("ThanhTien")) dgv.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                try
+                {
+                    if (dgv.Columns.Contains("TenMon"))
+                    {
+                        dgv.Columns["TenMon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["TenMon"].FillWeight = 60;
+                        dgv.Columns["TenMon"].MinimumWidth = 320;
+                        dgv.Columns["TenMon"].ToolTipText = "Tên món";
+                    }
+                    if (dgv.Columns.Contains("SoLuong"))
+                    {
+                        dgv.Columns["SoLuong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["SoLuong"].FillWeight = 10;
+                        dgv.Columns["SoLuong"].MinimumWidth = 70;
+                    }
+                    if (dgv.Columns.Contains("DonGia"))
+                    {
+                        dgv.Columns["DonGia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["DonGia"].FillWeight = 15;
+                        dgv.Columns["DonGia"].MinimumWidth = 120;
+                    }
+                    if (dgv.Columns.Contains("ThanhTien"))
+                    {
+                        dgv.Columns["ThanhTien"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["ThanhTien"].FillWeight = 15;
+                        dgv.Columns["ThanhTien"].MinimumWidth = 140;
+                    }
+
+                    dgv.CellFormatting += (s, e) =>
+                    {
+                        try
+                        {
+                            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                            var col = dgv.Columns[e.ColumnIndex];
+                            if (col == null) return;
+                            if (!string.Equals(col.Name, "TenMon", StringComparison.OrdinalIgnoreCase)) return;
+                            var v = e.Value?.ToString() ?? "";
+                            dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText = v;
+                        }
+                        catch { }
+                    };
+                }
+                catch { }
+
+                try
+                {
+                    TableStyleHelper.ApplyVndFormatting(dgv, "DonGia", "ThanhTien");
+                }
+                catch { }
+
+                var bottom = new FlowLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WrapContents = false,
+                    AutoSize = true
+                };
+
+                var btnClose = new Button
+                {
+                    Text = "Đóng",
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold),
+                    Padding = new Padding(18, 10, 18, 10),
+                    BackColor = Color.FromArgb(108, 117, 125),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat
+                };
+                btnClose.FlatAppearance.BorderSize = 0;
+                btnClose.Click += (s, e) => f.Close();
+
+                var lblTotal = new Label
+                {
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold),
+                    Text = "Tổng tiền: " + TableStyleHelper.FormatVnd(tongTien),
+                    Margin = new Padding(0, 8, 16, 0)
+                };
+
+                bottom.Controls.Add(btnClose);
+                bottom.Controls.Add(lblTotal);
+
+                root.Controls.Add(header, 0, 0);
+                root.Controls.Add(separatorTop, 0, 1);
+                root.Controls.Add(dgv, 0, 2);
+                root.Controls.Add(bottom, 0, 3);
+
+                paper.Controls.Add(root);
+                f.Controls.Add(paper);
+
+                f.ShowDialog(this);
+            }
         }
 
         private void ExportHoaDonToPdf(int maDH)
@@ -1598,6 +3023,9 @@ namespace PM_Ban_Do_An_Nhanh
                 dgvKhachHang.DataSource = dt;
                 dgvKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+                dgvKhachHang.EnableHeadersVisualStyles = false;
+                dgvKhachHang.ColumnHeadersDefaultCellStyle.Padding = new Padding(8, 0, 8, 0);
+
                 if (dgvKhachHang.Columns.Contains("MaKH"))
                     dgvKhachHang.Columns["MaKH"].HeaderText = "Mã KH";
                 if (dgvKhachHang.Columns.Contains("TenKH"))
@@ -1611,5 +3039,9 @@ namespace PM_Ban_Do_An_Nhanh
             }
         }
 
+        private void pnlMonAn_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

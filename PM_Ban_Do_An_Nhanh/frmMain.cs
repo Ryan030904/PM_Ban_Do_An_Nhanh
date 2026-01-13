@@ -255,5 +255,10 @@ namespace PM_Ban_Do_An_Nhanh
             LoadFormInTabPage(khuyenMaiForm, ref tabPageKhuyenMai, "Khuyến mãi");
             tabControlMain.SelectedTab = tabPageKhuyenMai;
         }
+
+        private void tabPageSales_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

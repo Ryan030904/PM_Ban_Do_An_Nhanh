@@ -30,11 +30,19 @@ namespace PM_Ban_Do_An_Nhanh
             this.Text = "Quản lý thực đơn";
 
             // GẮN EVENT
+            dgvMonAn.CellClick -= dgvMonAn_CellClick;
             dgvMonAn.CellClick += dgvMonAn_CellClick;
+            btnThem.Click -= btnThem_Click;
             btnThem.Click += btnThem_Click;
+            btnSua.Click -= btnSua_Click;
             btnSua.Click += btnSua_Click;
+            btnNhapHang.Click -= btnNhapHang_Click;
+            btnNhapHang.Click += btnNhapHang_Click;
+            btnXoa.Click -= btnXoa_Click;
             btnXoa.Click += btnXoa_Click;
+            btnLamMoi.Click -= btnLamMoi_Click;
             btnLamMoi.Click += btnLamMoi_Click;
+            btnChonHinh.Click -= btnChonHinh_Click;
             btnChonHinh.Click += btnChonHinh_Click;
 
             txtGia.Enter += (s, e) => UnformatGiaTextBox();
@@ -162,6 +170,8 @@ namespace PM_Ban_Do_An_Nhanh
                 var dgv = sender as DataGridView;
                 if (dgv == null) return;
 
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
                 // Only proceed when DataSource is a DataTable (our expected case)
                 if (dgv.DataSource is DataTable dt)
                 {
@@ -179,6 +189,63 @@ namespace PM_Ban_Do_An_Nhanh
                     if (dgv.Columns.Contains("HinhAnh"))
                         dgv.Columns["HinhAnh"].Visible = false;
                 }
+
+                // Prefer showing full item names; compact other columns
+                try
+                {
+                    if (dgv.Columns.Contains("MaMon"))
+                    {
+                        dgv.Columns["MaMon"].HeaderText = "Mã";
+                        dgv.Columns["MaMon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["MaMon"].FillWeight = 10F;
+                        dgv.Columns["MaMon"].MinimumWidth = 60;
+                        dgv.Columns["MaMon"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    if (dgv.Columns.Contains("TenMon"))
+                    {
+                        dgv.Columns["TenMon"].HeaderText = "Tên món";
+                        dgv.Columns["TenMon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["TenMon"].FillWeight = 52F;
+                        dgv.Columns["TenMon"].MinimumWidth = 260;
+                    }
+
+                    if (dgv.Columns.Contains("Gia"))
+                    {
+                        dgv.Columns["Gia"].HeaderText = "Đơn giá";
+                        dgv.Columns["Gia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["Gia"].FillWeight = 16F;
+                        dgv.Columns["Gia"].MinimumWidth = 120;
+                        dgv.Columns["Gia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    if (dgv.Columns.Contains("SoLuongTon"))
+                    {
+                        dgv.Columns["SoLuongTon"].HeaderText = "Tồn kho";
+                        dgv.Columns["SoLuongTon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["SoLuongTon"].FillWeight = 10F;
+                        dgv.Columns["SoLuongTon"].MinimumWidth = 80;
+                        dgv.Columns["SoLuongTon"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    if (dgv.Columns.Contains("TrangThai"))
+                    {
+                        dgv.Columns["TrangThai"].HeaderText = "Trạng thái";
+                        dgv.Columns["TrangThai"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["TrangThai"].FillWeight = 12F;
+                        dgv.Columns["TrangThai"].MinimumWidth = 90;
+                        dgv.Columns["TrangThai"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    if (dgv.Columns.Contains("TenDM"))
+                    {
+                        dgv.Columns["TenDM"].HeaderText = "Danh mục";
+                        dgv.Columns["TenDM"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgv.Columns["TenDM"].FillWeight = 14F;
+                        dgv.Columns["TenDM"].MinimumWidth = 110;
+                    }
+                }
+                catch { }
 
                 if (dgv.Columns.Contains("SoLuongTon"))
                 {
@@ -347,6 +414,11 @@ namespace PM_Ban_Do_An_Nhanh
 
             LoadDataToDataGridView();
             ClearInputFields();
+        }
+
+        private void btnNhapHang_Click(object sender, EventArgs e)
+        {
+            DgvContext_ImportStock_Click(sender, EventArgs.Empty);
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
